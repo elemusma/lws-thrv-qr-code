@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Configurator</title>
+  <style>
+    .step { display: none; }
+    .step.active { display: block; }
+
+    .option-button {
+      margin: 0.5rem;
+      padding: 1rem 2rem;
+      border: 2px solid #ccc;
+      background-color: #fff;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .option-button.selected {
+      background-color: #007bff;
+      color: white;
+      border-color: #007bff;
+    }
+
+    .navigation-buttons {
+      margin-top: 1rem;
+    }
+
+    .navigation-buttons button {
+      padding: 0.5rem 1.5rem;
+      margin: 0 0.5rem;
+      border: none;
+      border-radius: 4px;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+
+    .next-button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="step1" class="step active">
+    <h2>Select your language</h2>
+    <button onclick="selectLanguage('english')">English</button>
+    <button onclick="selectLanguage('french')">French</button>
+  </div>
+
+  <div id="step2" class="step">
+    <h2>Select your style</h2>
+    <div id="style-options"></div>
+    <div class="navigation-buttons">
+      <button onclick="prevStep()">Back</button>
+      <button class="next-button" onclick="nextStep()" disabled>Next</button>
+    </div>
+  </div>
+
+  <div id="step3" class="step">
+    <h2>Select your color</h2>
+    <div id="color-options"></div>
+    <div class="navigation-buttons">
+      <button onclick="prevStep()">Back</button>
+      <button class="next-button" onclick="nextStep()" disabled>Next</button>
+    </div>
+  </div>
+
+  <div id="step4" class="step">
+    <h2>Select your waist and length</h2>
+    <div>
+      <h3>Waist:</h3>
+      <div id="waist-options"></div>
+    </div>
+    <div>
+      <h3>Length:</h3>
+      <div id="length-options"></div>
+    </div>
+    <div class="navigation-buttons">
+      <button onclick="prevStep()">Back</button>
+      <button class="next-button" onclick="nextStep()" disabled>Next</button>
+    </div>
+  </div>
+
+  <div id="step5" class="step">
+    <h2>Summary</h2>
+    <div id="summary"></div>
+    <div class="navigation-buttons">
+      <button onclick="prevStep()">Back</button>
+    </div>
+  </div>
+
+  <script>
+    // Add your productData array here
+    // Example: const productData = [ { style: "slim", color: "black", waist: "32", length: "30" }, ... ];
+
+    let currentStep = 1;
+    const totalSteps = 5;
+    let selection = {
+      style: null,
+      color: null,
+      waist: null,
+      length: null,
+    };
+
+    function selectLanguage(lang) {
+      showStep(2);
+      loadStyleOptions();
+    }
+
+    function showStep(stepNumber) {
+      document.querySelectorAll(".step").forEach((step, index) => {
+        step.classList.toggle("active", index === stepNumber - 1);
+      });
+      currentStep = stepNumber;
+      updateNextButtonState();
+    }
+
+    function prevStep() {
+      if (currentStep > 1) {
+        showStep(currentStep - 1);
+        if (currentStep === 4) loadWaistAndLengthOptions(); // Refresh sizes if going back
+      }
+    }
+
+    function nextStep() {
+      if (currentStep < totalSteps) {
+        showStep(currentStep + 1);
+        if (currentStep === 3) loadColorOptions();
+        else if (currentStep === 4) loadWaistAndLengthOptions();
+        else if (currentStep === 5) populateSummary();
+      }
+    }
+
+    function updateNextButtonState() {
+      const btn = document.querySelector(`#step${currentStep} .next-button`);
+      if (!btn) return;
+
+      let enabled = false;
+      if (currentStep === 2) enabled = !!selection.style;
+      else if (currentStep === 3) enabled = !!selection.color;
+      else if (currentStep === 4) enabled = !!selection.waist && !!selection.length;
+
+      btn.disabled = !enabled;
+      btn.style.opacity = enabled ? 1 : 0.5;
+    }
+
+    function loadStyleOptions() {
+      const container = document.getElementById("style-options");
+      const styles = [...new Set(productData.map(p => p.style))];
+      container.innerHTML = "";
+      styles.forEach(style => {
+        const btn = document.createElement("button");
+        btn.className = "option-button";
+        btn.textContent = style.replace(/-/g, " ").toUpperCase();
+        btn.onclick = () => {
+          selection.style = style;
+          document.querySelectorAll("#style-options .option-button").forEach(b => b.classList.remove("selected"));
+          btn.classList.add("selected");
+          updateNextButtonState();
+        };
+        container.appendChild(btn);
+      });
+    }
+
+    function loadColorOptions() {
+      const container = document.getElementById("color-options");
+      const filtered = productData.filter(p => p.style === selection.style);
+      const colors = [...new Set(filtered.map(p => p.color))];
+      container.innerHTML = "";
+      colors.forEach(color => {
+        const btn = document.createElement("button");
+        btn.className = "option-button";
+        btn.textContent = color.replace(/-/g, " ").toUpperCase();
+        btn.onclick = () => {
+          selection.color = color;
+          document.querySelectorAll("#color-options .option-button").forEach(b => b.classList.remove("selected"));
+          btn.classList.add("selected");
+          updateNextButtonState();
+        };
+        container.appendChild(btn);
+      });
+    }
+
+    function loadWaistAndLengthOptions() {
+      const filtered = productData.filter(p =>
+        p.style === selection.style && p.color === selection.color
+      );
+
+      const waistContainer = document.getElementById("waist-options");
+      const lengthContainer = document.getElementById("length-options");
+
+      const waists = [...new Set(filtered.map(p => p.waist))];
+      const lengths = [...new Set(filtered.map(p => p.length))];
+
+      waistContainer.innerHTML = "";
+      waists.forEach(waist => {
+        const btn = document.createElement("button");
+        btn.className = "option-button";
+        btn.textContent = waist;
+        btn.onclick = () => {
+          selection.waist = waist;
+          document.querySelectorAll("#waist-options .option-button").forEach(b => b.classList.remove("selected"));
+          btn.classList.add("selected");
+          updateNextButtonState();
+        };
+        waistContainer.appendChild(btn);
+      });
+
+      lengthContainer.innerHTML = "";
+      lengths.forEach(length => {
+        const btn = document.createElement("button");
+        btn.className = "option-button";
+        btn.textContent = length;
+        btn.onclick = () => {
+          selection.length = length;
+          document.querySelectorAll("#length-options .option-button").forEach(b => b.classList.remove("selected"));
+          btn.classList.add("selected");
+          updateNextButtonState();
+        };
+        lengthContainer.appendChild(btn);
+      });
+    }
+
+    function populateSummary() {
+      const summary = document.getElementById("summary");
+      summary.innerHTML = `
+        <p><strong>Style:</strong> ${selection.style}</p>
+        <p><strong>Color:</strong> ${selection.color}</p>
+        <p><strong>Waist:</strong> ${selection.waist}</p>
+        <p><strong>Length:</strong> ${selection.length}</p>
+      `;
+    }
+
+    // Optional: initialize summary or clean selections on refresh if needed
+  </script>
+</body>
+</html>

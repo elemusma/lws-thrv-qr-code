@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thrive Workwear Product Selector</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      color: #000;
+      text-align: center;
+    }
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .logo {
+      width: 150px;
+      margin: 20px auto;
+    }
+    .step { display: none; }
+    .step.active { display: block; }
+    .button-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    .button {
+      flex: 1;
+      padding: 10px;
+      font-size: 14px;
+      background: #f5c84c;
+      border: none;
+      border-radius: 20px;
+      font-weight: bold;
+      color: #000;
+      cursor: pointer;
+    }
+    .option-button {
+      padding: 10px;
+      margin: 6px 4px;
+      width: 45%;
+      border-radius: 8px;
+      border: 2px solid #000;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .option-button.selected {
+      background: #000;
+      color: #fff;
+    }
+    .color-button { color: #fff; }
+    .color-white { background: #fff; color: #000; border: 2px solid #000; }
+    .color-black { background: #000; }
+    .color-navy { background: #1c3d6e; }
+    .color-rust { background: #b1692e; }
+    .color-slate { background: #6c6c6c; }
+    .color-tumbleweed { background: #d6b16d; color: #000; }
+
+    .summary-section { text-align: left; }
+    .summary-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .thumbnail {
+      max-width: 100px;
+      margin-top: 20px;
+    }
+    .sw-logo {
+      width: 150px;
+      margin: 20px auto 10px;
+    }
+    .item-number {
+      font-size: 18px;
+      /* color: red; */
+      font-weight: bold;
+    }
+    .side-by-side {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .side-by-side > div {
+      width: 48%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="https://via.placeholder.com/150x60?text=THRIVE+LOGO" alt="Thrive Logo" class="logo">
+
+    <!-- Step 1: Language -->
+    <div class="step active" id="step1">
+      <p>Welcome to the Thrive Workwear Product Selection Guide</p>
+      <button class="button" onclick="selectLanguage('en')">CONTINUE IN ENGLISH</button>
+      <p>Bienvenido al selector de productos de ropa de trabajo Thrive Workwear</p>
+      <button class="button" onclick="selectLanguage('es')">CONTINUAR en Español</button>
+    </div>
+
+    <!-- Step 2: Style -->
+    <div class="step" id="step2">
+      <p id="step2-text">What STYLE of workwear?</p>
+      <div id="style-options"></div>
+      <div class="button-row">
+        <button class="button" onclick="prevStep()">BACK</button>
+        <button class="button" onclick="nextStep()">NEXT</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Color -->
+    <div class="step" id="step3">
+      <p id="step3-text">What Color?</p>
+      <div id="color-options"></div>
+      <div class="button-row">
+        <button class="button" onclick="prevStep()">BACK</button>
+        <button class="button" onclick="nextStep()">NEXT</button>
+      </div>
+    </div>
+
+    <!-- Step 4: Waist/Length -->
+    <div class="step" id="step4">
+      <div class="side-by-side">
+        <div>
+          <p id="step4-waist-text">What WAIST size?</p>
+          <div id="waist-options"></div>
+        </div>
+        <div>
+          <p id="step4-length-text">What LENGTH size?</p>
+          <div id="length-options"></div>
+        </div>
+      </div>
+      <div class="button-row">
+        <button class="button" onclick="prevStep()">BACK</button>
+        <button class="button" onclick="nextStep()">NEXT</button>
+      </div>
+    </div>
+
+    <!-- Step 5: Summary -->
+ <div class="step" id="step5">
+<p>Your Selection:</p>
+<div class="summary-flex">
+<div class="summary-section">
+<p><strong>STYLE:</strong> <span id="summary-style"></span></p>
+<p><strong>COLOR:</strong> <span id="summary-color"></span></p>
+<p><strong>SIZE WAIST:</strong> <span id="summary-waist"></span></p>
+<p><strong>SIZE LENGTH:</strong> <span id="summary-length"></span></p>
+</div>
+<img class="thumbnail" id="preview-image" src="https://via.placeholder.com/100x150?text=PANTS" alt="Product Thumbnail">
+</div>
+<p class="item-number">ITEM NUMBER: <span id="summary-item">TBD</span></p>
+<p>Please show this information to your SHERWIN-WILLIAMS store associate for ordering<br><strong>THANK YOU!</strong></p>
+<img src="https://via.placeholder.com/150x60?text=SW+LOGO" alt="Sherwin Williams Logo" class="sw-logo">
+<div class="button-row">
+<button class="button" onclick="prevStep()">BACK</button>
+</div>
+</div>
+  </div>
+
+  <script>
+    const translations = {
+  en: {
+    colors: {
+      white: "WHITE",
+      black: "BLACK",
+      navy: "NAVY",
+      rust: "RUST",
+      slate: "SLATE",
+      tumbleweed: "TUMBLEWEED",
+    },
+    titles: {
+      style: "What STYLE of workwear?",
+      color: "What COLOR?",
+      waist: "What WAIST size?",
+      length: "What LENGTH size?"
+    }
+  },
+  es: {
+    colors: {
+      white: "BLANCO",
+      black: "NEGRO",
+      navy: "AZUL MARINO",
+      rust: "ÓXIDO",
+      slate: "GRIS PIZARRA",
+      tumbleweed: "PAJA",
+    },
+    titles: {
+      style: "¿Qué ESTILO de ropa de trabajo?",
+      color: "¿Qué COLOR?",
+      waist: "¿Qué TALLA DE CINTURA?",
+      length: "¿Qué LARGO?"
+    }
+  },
+};
+
+    const styles = [
+      { value: "core-basic", en: "CORE- basic pants", es: "CORE- pantalones básicos" },
+      { value: "pro-kneepad", en: "PRO- knee pad pants", es: "PRO- pantalones con rodillera" },
+      { value: "shorts-men", en: "SHORTS- men’s", es: "SHORTS- hombre" },
+      { value: "core-women", en: "WOMEN’S CORE- pants", es: "CORE- pantalones mujer" },
+    ];
+    const colors = ["white", "black", "navy", "rust", "slate", "tumbleweed"];
+    const waistSizes = ["28W", "30W", "32W", "34W", "36W", "38W", "40W", "42W"];
+    const lengthSizes = ["28L", "30L", "32L", "34L", "36L"];
+
+const productData = [
+  // CORE White Pants (Men's)
+  { style: "core-basic", color: "white", waist: "28", length: "30L", swItem: "103461760" },
+  { style: "core-basic", color: "white", waist: "30", length: "30L", swItem: "102730025" },
+  { style: "core-basic", color: "white", waist: "30", length: "32L", swItem: "102730041" },
+  { style: "core-basic", color: "white", waist: "30", length: "34L", swItem: "102730058" },
+  { style: "core-basic", color: "white", waist: "30", length: "36L", swItem: "102730066" },
+  { style: "core-basic", color: "white", waist: "32", length: "28L", swItem: "103129318" },
+  { style: "core-basic", color: "white", waist: "32", length: "30L", swItem: "102730074" },
+  { style: "core-basic", color: "white", waist: "32", length: "32L", swItem: "102730082" },
+  { style: "core-basic", color: "white", waist: "32", length: "34L", swItem: "102730090" },
+  { style: "core-basic", color: "white", waist: "32", length: "36L", swItem: "102730108" },
+  { style: "core-basic", color: "white", waist: "34", length: "28L", swItem: "103129300" },
+  { style: "core-basic", color: "white", waist: "34", length: "30L", swItem: "102730116" },
+  { style: "core-basic", color: "white", waist: "34", length: "32L", swItem: "102730124" },
+  { style: "core-basic", color: "white", waist: "34", length: "34L", swItem: "102730132" },
+  { style: "core-basic", color: "white", waist: "34", length: "36L", swItem: "102730157" },
+  { style: "core-basic", color: "white", waist: "36", length: "28L", swItem: "103129292" },
+  { style: "core-basic", color: "white", waist: "36", length: "30L", swItem: "102730165" },
+  { style: "core-basic", color: "white", waist: "36", length: "32L", swItem: "102730173" },
+  { style: "core-basic", color: "white", waist: "36", length: "34L", swItem: "102730181" },
+  { style: "core-basic", color: "white", waist: "36", length: "36L", swItem: "102730199" },
+  { style: "core-basic", color: "white", waist: "38", length: "28L", swItem: "103070181" },
+  { style: "core-basic", color: "white", waist: "38", length: "30L", swItem: "102730207" },
+  { style: "core-basic", color: "white", waist: "38", length: "32L", swItem: "102730215" },
+  { style: "core-basic", color: "white", waist: "38", length: "34L", swItem: "102730223" },
+  { style: "core-basic", color: "white", waist: "38", length: "36L", swItem: "102730231" },
+  { style: "core-basic", color: "white", waist: "40", length: "28L", swItem: "103148482" },
+  { style: "core-basic", color: "white", waist: "40", length: "30L", swItem: "102730249" },
+  { style: "core-basic", color: "white", waist: "40", length: "32L", swItem: "102730264" },
+  { style: "core-basic", color: "white", waist: "40", length: "34L", swItem: "102730272" },
+  { style: "core-basic", color: "white", waist: "40", length: "36L", swItem: "102730280" },
+  { style: "core-basic", color: "white", waist: "42", length: "28L", swItem: "103148490" },
+  { style: "core-basic", color: "white", waist: "42", length: "30L", swItem: "102730298" },
+  { style: "core-basic", color: "white", waist: "42", length: "32L", swItem: "102730306" },
+  { style: "core-basic", color: "white", waist: "42", length: "34L", swItem: "102730314" },
+  { style: "core-basic", color: "white", waist: "42", length: "36L", swItem: "102730322" },
+  { style: "core-basic", color: "white", waist: "44", length: "30L", swItem: "103461968" },
+  { style: "core-basic", color: "white", waist: "44", length: "32L", swItem: "103461976" },
+
+  // Kneepad Inserts
+  { style: "kneepad-inserts", color: "n/a", waist: "n/a", length: "n/a", swItem: "102516978" },
+
+  // PRO White Kneepad Pants (Men's)
+  { style: "pro-kneepad", color: "white", waist: "28", length: "30L", swItem: "103461984" },
+  { style: "pro-kneepad", color: "white", waist: "30", length: "30L", swItem: "102517083" },
+  { style: "pro-kneepad", color: "white", waist: "30", length: "32L", swItem: "102729928" },
+  { style: "pro-kneepad", color: "white", waist: "30", length: "34L", swItem: "102730033" },
+  { style: "pro-kneepad", color: "white", waist: "30", length: "36L", swItem: "102730140" },
+  { style: "pro-kneepad", color: "white", waist: "32", length: "28L", swItem: "103148425" },
+  { style: "pro-kneepad", color: "white", waist: "32", length: "30L", swItem: "102517117" },
+  { style: "pro-kneepad", color: "white", waist: "32", length: "32L", swItem: "102517125" },
+  { style: "pro-kneepad", color: "white", waist: "32", length: "34L", swItem: "102730256" },
+  { style: "pro-kneepad", color: "white", waist: "32", length: "36L", swItem: "102730363" },
+  { style: "pro-kneepad", color: "white", waist: "34", length: "28L", swItem: "103148433" },
+  { style: "pro-kneepad", color: "white", waist: "34", length: "30L", swItem: "102517133" },
+  { style: "pro-kneepad", color: "white", waist: "34", length: "32L", swItem: "102517141" },
+  { style: "pro-kneepad", color: "white", waist: "34", length: "34L", swItem: "102517158" },
+  { style: "pro-kneepad", color: "white", waist: "34", length: "36L", swItem: "102730413" },
+  { style: "pro-kneepad", color: "white", waist: "36", length: "28L", swItem: "103148441" },
+  { style: "pro-kneepad", color: "white", waist: "36", length: "30L", swItem: "102517166" },
+  { style: "pro-kneepad", color: "white", waist: "36", length: "32L", swItem: "102517174" },
+  { style: "pro-kneepad", color: "white", waist: "36", length: "34L", swItem: "102730421" },
+  { style: "pro-kneepad", color: "white", waist: "36", length: "36L", swItem: "102730439" },
+  { style: "pro-kneepad", color: "white", waist: "38", length: "28L", swItem: "103148458" },
+  { style: "pro-kneepad", color: "white", waist: "38", length: "30L", swItem: "102516986" },
+  { style: "pro-kneepad", color: "white", waist: "38", length: "32L", swItem: "102516994" },
+  { style: "pro-kneepad", color: "white", waist: "38", length: "34L", swItem: "102730447" },
+  { style: "pro-kneepad", color: "white", waist: "38", length: "36L", swItem: "102729936" },
+  { style: "pro-kneepad", color: "white", waist: "40", length: "28L", swItem: "103146466" },
+  { style: "pro-kneepad", color: "white", waist: "40", length: "30L", swItem: "102729944" },
+  { style: "pro-kneepad", color: "white", waist: "40", length: "32L", swItem: "102729951" },
+  { style: "pro-kneepad", color: "white", waist: "40", length: "34L", swItem: "102729969" },
+  { style: "pro-kneepad", color: "white", waist: "40", length: "36L", swItem: "102729977" },
+  { style: "pro-kneepad", color: "white", waist: "42", length: "28L", swItem: "103148474" },
+  { style: "pro-kneepad", color: "white", waist: "42", length: "30L", swItem: "102729985" },
+  { style: "pro-kneepad", color: "white", waist: "42", length: "32L", swItem: "102729993" },
+  { style: "pro-kneepad", color: "white", waist: "42", length: "34L", swItem: "102730009" },
+  { style: "pro-kneepad", color: "white", waist: "42", length: "36L", swItem: "102730017" },
+  { style: "pro-kneepad", color: "white", waist: "44", length: "30L", swItem: "103461992" },
+  { style: "pro-kneepad", color: "white", waist: "44", length: "32L", swItem: "103462008" },
+
+  // SHORTS White (Men's)
+  { style: "shorts-men", color: "white", waist: "30", length: "11", swItem: "102730330" },
+  { style: "shorts-men", color: "white", waist: "32", length: "11", swItem: "102730348" },
+  { style: "shorts-men", color: "white", waist: "34", length: "11", swItem: "102730355" },
+  { style: "shorts-men", color: "white", waist: "36", length: "11", swItem: "102730371" },
+  { style: "shorts-men", color: "white", waist: "38", length: "11", swItem: "102730389" },
+  { style: "shorts-men", color: "white", waist: "40", length: "11", swItem: "102730397" },
+  { style: "shorts-men", color: "white", waist: "42", length: "11", swItem: "102730405" },
+
+  // CORE Black Pants (Men's)
+  { style: "core-basic", color: "black", waist: "30", length: "30L", swItem: "102871142" },
+  { style: "core-basic", color: "black", waist: "30", length: "32L", swItem: "102871167" },
+  { style: "core-basic", color: "black", waist: "30", length: "34L", swItem: "102871175" },
+  { style: "core-basic", color: "black", waist: "30", length: "36L", swItem: "102871183" },
+  { style: "core-basic", color: "black", waist: "32", length: "28L", swItem: "102871191" },
+  { style: "core-basic", color: "black", waist: "32", length: "30L", swItem: "102871209" },
+  { style: "core-basic", color: "black", waist: "32", length: "32L", swItem: "102871217" },
+  { style: "core-basic", color: "black", waist: "32", length: "34L", swItem: "102871225" },
+  { style: "core-basic", color: "black", waist: "32", length: "36L", swItem: "102871233" },
+  { style: "core-basic", color: "black", waist: "34", length: "28L", swItem: "102871241" },
+  { style: "core-basic", color: "black", waist: "34", length: "30L", swItem: "102871258" },
+  { style: "core-basic", color: "black", waist: "34", length: "32L", swItem: "102871274" },
+  { style: "core-basic", color: "black", waist: "34", length: "34L", swItem: "102872413" },
+  { style: "core-basic", color: "black", waist: "34", length: "36L", swItem: "102872421" },
+  { style: "core-basic", color: "black", waist: "36", length: "28L", swItem: "102872439" },
+  { style: "core-basic", color: "black", waist: "36", length: "30L", swItem: "102872447" },
+  { style: "core-basic", color: "black", waist: "36", length: "32L", swItem: "102872454" },
+  { style: "core-basic", color: "black", waist: "36", length: "34L", swItem: "102872462" },
+  { style: "core-basic", color: "black", waist: "36", length: "36L", swItem: "102872470" },
+  { style: "core-basic", color: "black", waist: "38", length: "28L", swItem: "102872488" },
+  { style: "core-basic", color: "black", waist: "38", length: "30L", swItem: "102872496" },
+  { style: "core-basic", color: "black", waist: "38", length: "32L", swItem: "102870722" },
+  { style: "core-basic", color: "black", waist: "38", length: "34L", swItem: "102870730" },
+  { style: "core-basic", color: "black", waist: "38", length: "36L", swItem: "102870748" },
+  { style: "core-basic", color: "black", waist: "40", length: "30L", swItem: "102870755" },
+  { style: "core-basic", color: "black", waist: "40", length: "32L", swItem: "102870763" },
+  { style: "core-basic", color: "black", waist: "40", length: "34L", swItem: "102870771" },
+
+  // CORE Navy Pants (Men's)
+  { style: "core-basic", color: "navy", waist: "30", length: "30L", swItem: "102872314" },
+  { style: "core-basic", color: "navy", waist: "30", length: "32L", swItem: "102872322" },
+  { style: "core-basic", color: "navy", waist: "30", length: "34L", swItem: "102872330" },
+  { style: "core-basic", color: "navy", waist: "30", length: "36L", swItem: "102872348" },
+  { style: "core-basic", color: "navy", waist: "32", length: "28L", swItem: "102872355" },
+  { style: "core-basic", color: "navy", waist: "32", length: "30L", swItem: "102872363" },
+  { style: "core-basic", color: "navy", waist: "32", length: "32L", swItem: "102872371" },
+  { style: "core-basic", color: "navy", waist: "32", length: "34L", swItem: "102872389" },
+  { style: "core-basic", color: "navy", waist: "32", length: "36L", swItem: "102872405" },
+  { style: "core-basic", color: "navy", waist: "34", length: "28L", swItem: "102870953" },
+  { style: "core-basic", color: "navy", waist: "34", length: "30L", swItem: "102870961" },
+  { style: "core-basic", color: "navy", waist: "34", length: "32L", swItem: "102870979" },
+  { style: "core-basic", color: "navy", waist: "34", length: "34L", swItem: "102870987" },
+  { style: "core-basic", color: "navy", waist: "34", length: "36L", swItem: "102870995" },
+  { style: "core-basic", color: "navy", waist: "36", length: "28L", swItem: "102871001" },
+  { style: "core-basic", color: "navy", waist: "36", length: "30L", swItem: "102871019" },
+  { style: "core-basic", color: "navy", waist: "36", length: "32L", swItem: "102871027" },
+  { style: "core-basic", color: "navy", waist: "36", length: "34L", swItem: "102871035" },
+  { style: "core-basic", color: "navy", waist: "36", length: "36L", swItem: "102871050" },
+  { style: "core-basic", color: "navy", waist: "38", length: "28L", swItem: "102871068" },
+  { style: "core-basic", color: "navy", waist: "38", length: "30L", swItem: "102871076" },
+  { style: "core-basic", color: "navy", waist: "38", length: "32L", swItem: "102871084" },
+  { style: "core-basic", color: "navy", waist: "38", length: "34L", swItem: "102871092" },
+  { style: "core-basic", color: "navy", waist: "38", length: "36L", swItem: "102871100" },
+  { style: "core-basic", color: "navy", waist: "40", length: "30L", swItem: "102871118" },
+  { style: "core-basic", color: "navy", waist: "40", length: "32L", swItem: "102871126" },
+  { style: "core-basic", color: "navy", waist: "40", length: "34L", swItem: "102871134" },
+
+  // CORE Rust Pants (Men's)
+  { style: "core-basic", color: "rust", waist: "30", length: "30L", swItem: "102870789" },
+  { style: "core-basic", color: "rust", waist: "30", length: "32L", swItem: "102870797" },
+  { style: "core-basic", color: "rust", waist: "30", length: "34L", swItem: "102870805" },
+  { style: "core-basic", color: "rust", waist: "30", length: "36L", swItem: "102870813" },
+  { style: "core-basic", color: "rust", waist: "32", length: "28L", swItem: "102870839" },
+  { style: "core-basic", color: "rust", waist: "32", length: "30L", swItem: "102870847" },
+  { style: "core-basic", color: "rust", waist: "32", length: "32L", swItem: "102870854" },
+  { style: "core-basic", color: "rust", waist: "32", length: "34L", swItem: "102870862" },
+  { style: "core-basic", color: "rust", waist: "32", length: "36L", swItem: "102870870" },
+  { style: "core-basic", color: "rust", waist: "34", length: "28L", swItem: "102870888" },
+  { style: "core-basic", color: "rust", waist: "34", length: "30L", swItem: "102870896" },
+  { style: "core-basic", color: "rust", waist: "34", length: "32L", swItem: "102870904" },
+  { style: "core-basic", color: "rust", waist: "34", length: "34L", swItem: "102870912" },
+  { style: "core-basic", color: "rust", waist: "34", length: "36L", swItem: "102870920" },
+  { style: "core-basic", color: "rust", waist: "36", length: "28L", swItem: "102870946" },
+  { style: "core-basic", color: "rust", waist: "36", length: "30L", swItem: "102871282" },
+  { style: "core-basic", color: "rust", waist: "36", length: "32L", swItem: "102871290" },
+  { style: "core-basic", color: "rust", waist: "36", length: "34L", swItem: "102871308" },
+  { style: "core-basic", color: "rust", waist: "36", length: "36L", swItem: "102871316" },
+  { style: "core-basic", color: "rust", waist: "38", length: "28L", swItem: "102871324" },
+  { style: "core-basic", color: "rust", waist: "38", length: "30L", swItem: "102871332" },
+  { style: "core-basic", color: "rust", waist: "38", length: "32L", swItem: "102871340" },
+  { style: "core-basic", color: "rust", waist: "38", length: "34L", swItem: "102871357" },
+  { style: "core-basic", color: "rust", waist: "38", length: "36L", swItem: "102871365" },
+  { style: "core-basic", color: "rust", waist: "40", length: "30L", swItem: "102871381" },
+  { style: "core-basic", color: "rust", waist: "40", length: "32L", swItem: "102871399" },
+  { style: "core-basic", color: "rust", waist: "40", length: "34L", swItem: "102871407" },
+
+  // CORE Slate Pants (Men's)
+  { style: "core-basic", color: "slate", waist: "30", length: "28L", swItem: "103221081" },
+  { style: "core-basic", color: "slate", waist: "30", length: "30L", swItem: "103221099" },
+  { style: "core-basic", color: "slate", waist: "30", length: "32L", swItem: "103221107" },
+  { style: "core-basic", color: "slate", waist: "30", length: "34L", swItem: "103221123" },
+  { style: "core-basic", color: "slate", waist: "30", length: "36L", swItem: "103221131" },
+  { style: "core-basic", color: "slate", waist: "32", length: "28L", swItem: "103221149" },
+  { style: "core-basic", color: "slate", waist: "32", length: "30L", swItem: "103221156" },
+  { style: "core-basic", color: "slate", waist: "32", length: "32L", swItem: "103221164" },
+  { style: "core-basic", color: "slate", waist: "32", length: "34L", swItem: "103221172" },
+  { style: "core-basic", color: "slate", waist: "32", length: "36L", swItem: "103221180" },
+  { style: "core-basic", color: "slate", waist: "34", length: "28L", swItem: "103221198" },
+  { style: "core-basic", color: "slate", waist: "34", length: "30L", swItem: "103221206" },
+  { style: "core-basic", color: "slate", waist: "34", length: "32L", swItem: "103221214" },
+  { style: "core-basic", color: "slate", waist: "34", length: "34L", swItem: "103221230" },
+  { style: "core-basic", color: "slate", waist: "34", length: "36L", swItem: "103221248" },
+  { style: "core-basic", color: "slate", waist: "36", length: "28L", swItem: "103221255" },
+  { style: "core-basic", color: "slate", waist: "36", length: "30L", swItem: "103221263" },
+  { style: "core-basic", color: "slate", waist: "36", length: "32L", swItem: "103221271" },
+  { style: "core-basic", color: "slate", waist: "36", length: "34L", swItem: "103221289" },
+  { style: "core-basic", color: "slate", waist: "36", length: "36L", swItem: "103221297" },
+  { style: "core-basic", color: "slate", waist: "38", length: "28L", swItem: "103221305" },
+  { style: "core-basic", color: "slate", waist: "38", length: "30L", swItem: "103221313" },
+  { style: "core-basic", color: "slate", waist: "38", length: "32L", swItem: "103221321" },
+  { style: "core-basic", color: "slate", waist: "38", length: "34L", swItem: "103221347" },
+  { style: "core-basic", color: "slate", waist: "38", length: "36L", swItem: "103221354" },
+  { style: "core-basic", color: "slate", waist: "40", length: "28L", swItem: "103221362" },
+  { style: "core-basic", color: "slate", waist: "40", length: "30L", swItem: "103221370" },
+  { style: "core-basic", color: "slate", waist: "40", length: "32L", swItem: "103221388" },
+  { style: "core-basic", color: "slate", waist: "40", length: "34L", swItem: "103221396" },
+  { style: "core-basic", color: "slate", waist: "40", length: "36L", swItem: "103221404" },
+  { style: "core-basic", color: "slate", waist: "42", length: "28L", swItem: "103221412" },
+  { style: "core-basic", color: "slate", waist: "42", length: "30L", swItem: "103221420" },
+  { style: "core-basic", color: "slate", waist: "42", length: "32L", swItem: "103221438" },
+  { style: "core-basic", color: "slate", waist: "42", length: "34L", swItem: "103221453" },
+  { style: "core-basic", color: "slate", waist: "42", length: "36L", swItem: "103221461" },
+  { style: "core-basic", color: "slate", waist: "44", length: "28L", swItem: "103221479" },
+  { style: "core-basic", color: "slate", waist: "44", length: "30L", swItem: "103221487" },
+  { style: "core-basic", color: "slate", waist: "44", length: "32L", swItem: "103221495" },
+  { style: "core-basic", color: "slate", waist: "44", length: "34L", swItem: "103221503" },
+  { style: "core-basic", color: "slate", waist: "44", length: "36L", swItem: "103221511" },
+
+  // CORE Tumbleweed Pants (Men's)
+  { style: "core-basic", color: "tumbleweed", waist: "30", length: "28L", swItem: "103221529" },
+  { style: "core-basic", color: "tumbleweed", waist: "30", length: "30L", swItem: "103221537" },
+  { style: "core-basic", color: "tumbleweed", waist: "30", length: "32L", swItem: "103221545" },
+  { style: "core-basic", color: "tumbleweed", waist: "30", length: "34L", swItem: "103221560" },
+  { style: "core-basic", color: "tumbleweed", waist: "30", length: "36L", swItem: "103221578" },
+  { style: "core-basic", color: "tumbleweed", waist: "32", length: "28L", swItem: "103221586" },
+  { style: "core-basic", color: "tumbleweed", waist: "32", length: "30L", swItem: "103221594" },
+  { style: "core-basic", color: "tumbleweed", waist: "32", length: "32L", swItem: "103221602" },
+  { style: "core-basic", color: "tumbleweed", waist: "32", length: "34L", swItem: "103221610" },
+  { style: "core-basic", color: "tumbleweed", waist: "32", length: "36L", swItem: "103221628" },
+  { style: "core-basic", color: "tumbleweed", waist: "34", length: "28L", swItem: "103221636" },
+  { style: "core-basic", color: "tumbleweed", waist: "34", length: "30L", swItem: "103221644" },
+  { style: "core-basic", color: "tumbleweed", waist: "34", length: "32L", swItem: "103221651" },
+  { style: "core-basic", color: "tumbleweed", waist: "34", length: "34L", swItem: "103221677" },
+  { style: "core-basic", color: "tumbleweed", waist: "34", length: "36L", swItem: "103221685" },
+  { style: "core-basic", color: "tumbleweed", waist: "36", length: "28L", swItem: "103221693" },
+  { style: "core-basic", color: "tumbleweed", waist: "36", length: "30L", swItem: "103221701" },
+  { style: "core-basic", color: "tumbleweed", waist: "36", length: "32L", swItem: "103221719" },
+  { style: "core-basic", color: "tumbleweed", waist: "36", length: "34L", swItem: "103221727" },
+  { style: "core-basic", color: "tumbleweed", waist: "36", length: "36L", swItem: "103221735" },
+  { style: "core-basic", color: "tumbleweed", waist: "38", length: "28L", swItem: "103220992" },
+  { style: "core-basic", color: "tumbleweed", waist: "38", length: "30L", swItem: "103221776" },
+  { style: "core-basic", color: "tumbleweed", waist: "38", length: "32L", swItem: "103221883" },
+  { style: "core-basic", color: "tumbleweed", waist: "38", length: "34L", swItem: "103221990" },
+  { style: "core-basic", color: "tumbleweed", waist: "38", length: "36L", swItem: "103222105" },
+  { style: "core-basic", color: "tumbleweed", waist: "40", length: "28L", swItem: "103222212" },
+  { style: "core-basic", color: "tumbleweed", waist: "40", length: "30L", swItem: "103222329" },
+  { style: "core-basic", color: "tumbleweed", waist: "40", length: "32L", swItem: "103222436" },
+  { style: "core-basic", color: "tumbleweed", waist: "40", length: "34L", swItem: "103222543" },
+  { style: "core-basic", color: "tumbleweed", waist: "40", length: "36L", swItem: "103221008" },
+  { style: "core-basic", color: "tumbleweed", waist: "42", length: "28L", swItem: "103221115" },
+  { style: "core-basic", color: "tumbleweed", waist: "42", length: "30L", swItem: "103221222" },
+  { style: "core-basic", color: "tumbleweed", waist: "42", length: "32L", swItem: "103221339" },
+  { style: "core-basic", color: "tumbleweed", waist: "42", length: "34L", swItem: "103221446" },
+  { style: "core-basic", color: "tumbleweed", waist: "42", length: "36L", swItem: "103221552" },
+  { style: "core-basic", color: "tumbleweed", waist: "44", length: "28L", swItem: "103221669" },
+  { style: "core-basic", color: "tumbleweed", waist: "44", length: "30L", swItem: "103221743" },
+  { style: "core-basic", color: "tumbleweed", waist: "44", length: "32L", swItem: "103221750" },
+  { style: "core-basic", color: "tumbleweed", waist: "44", length: "34L", swItem: "103221768" },
+  { style: "core-basic", color: "tumbleweed", waist: "44", length: "36L", swItem: "103221784" },
+
+  // PRO Black Kneepad Pants (Men's)
+  { style: "pro-kneepad", color: "black", waist: "30", length: "30L", swItem: "102871712" },
+  { style: "pro-kneepad", color: "black", waist: "30", length: "32L", swItem: "102871720" },
+  { style: "pro-kneepad", color: "black", waist: "30", length: "34L", swItem: "102871746" },
+  { style: "pro-kneepad", color: "black", waist: "30", length: "36L", swItem: "102871753" },
+  { style: "pro-kneepad", color: "black", waist: "32", length: "28L", swItem: "102871761" },
+  { style: "pro-kneepad", color: "black", waist: "32", length: "30L", swItem: "102871779" },
+  { style: "pro-kneepad", color: "black", waist: "32", length: "32L", swItem: "102871787" },
+  { style: "pro-kneepad", color: "black", waist: "32", length: "34L", swItem: "102871795" },
+  { style: "pro-kneepad", color: "black", waist: "32", length: "36L", swItem: "102871803" },
+  { style: "pro-kneepad", color: "black", waist: "34", length: "28L", swItem: "102871811" },
+  { style: "pro-kneepad", color: "black", waist: "34", length: "30L", swItem: "102871829" },
+  { style: "pro-kneepad", color: "black", waist: "34", length: "32L", swItem: "102871837" },
+  { style: "pro-kneepad", color: "black", waist: "34", length: "34L", swItem: "102871852" },
+  { style: "pro-kneepad", color: "black", waist: "34", length: "36L", swItem: "102871860" },
+  { style: "pro-kneepad", color: "black", waist: "36", length: "28L", swItem: "102871878" },
+  { style: "pro-kneepad", color: "black", waist: "36", length: "30L", swItem: "102871886" },
+  { style: "pro-kneepad", color: "black", waist: "36", length: "32L", swItem: "102871894" },
+  { style: "pro-kneepad", color: "black", waist: "36", length: "34L", swItem: "102871902" },
+  { style: "pro-kneepad", color: "black", waist: "36", length: "36L", swItem: "102871910" },
+  { style: "pro-kneepad", color: "black", waist: "38", length: "28L", swItem: "102871928" },
+  { style: "pro-kneepad", color: "black", waist: "38", length: "30L", swItem: "102871936" },
+  { style: "pro-kneepad", color: "black", waist: "38", length: "32L", swItem: "102871944" },
+  { style: "pro-kneepad", color: "black", waist: "38", length: "34L", swItem: "102871969" },
+  { style: "pro-kneepad", color: "black", waist: "38", length: "36L", swItem: "102871977" },
+  { style: "pro-kneepad", color: "black", waist: "40", length: "30L", swItem: "102871985" },
+  { style: "pro-kneepad", color: "black", waist: "40", length: "32L", swItem: "102871993" },
+  { style: "pro-kneepad", color: "black", waist: "40", length: "34L", swItem: "102872009" },
+
+  // PRO Navy Kneepad Pants (Men's)
+  { style: "pro-kneepad", color: "navy", waist: "30", length: "30L", swItem: "102870706" },
+  { style: "pro-kneepad", color: "navy", waist: "30", length: "32L", swItem: "102871621" },
+  { style: "pro-kneepad", color: "navy", waist: "30", length: "34L", swItem: "102871738" },
+  { style: "pro-kneepad", color: "navy", waist: "30", length: "36L", swItem: "102871845" },
+  { style: "pro-kneepad", color: "navy", waist: "32", length: "28L", swItem: "102871951" },
+  { style: "pro-kneepad", color: "navy", waist: "32", length: "30L", swItem: "102872066" },
+  { style: "pro-kneepad", color: "navy", waist: "32", length: "32L", swItem: "102872173" },
+  { style: "pro-kneepad", color: "navy", waist: "32", length: "34L", swItem: "102872280" },
+  { style: "pro-kneepad", color: "navy", waist: "32", length: "36L", swItem: "102872397" },
+  { style: "pro-kneepad", color: "navy", waist: "34", length: "28L", swItem: "102870714" },
+  { style: "pro-kneepad", color: "navy", waist: "34", length: "30L", swItem: "102870821" },
+  { style: "pro-kneepad", color: "navy", waist: "34", length: "32L", swItem: "102870938" },
+  { style: "pro-kneepad", color: "navy", waist: "34", length: "34L", swItem: "102871043" },
+  { style: "pro-kneepad", color: "navy", waist: "34", length: "36L", swItem: "102871159" },
+  { style: "pro-kneepad", color: "navy", waist: "36", length: "28L", swItem: "102871266" },
+  { style: "pro-kneepad", color: "navy", waist: "36", length: "30L", swItem: "102871373" },
+  { style: "pro-kneepad", color: "navy", waist: "36", length: "32L", swItem: "102871480" },
+  { style: "pro-kneepad", color: "navy", waist: "36", length: "34L", swItem: "102871597" },
+  { style: "pro-kneepad", color: "navy", waist: "36", length: "36L", swItem: "102871613" },
+  { style: "pro-kneepad", color: "navy", waist: "38", length: "28L", swItem: "102871639" },
+  { style: "pro-kneepad", color: "navy", waist: "38", length: "30L", swItem: "102871647" },
+  { style: "pro-kneepad", color: "navy", waist: "38", length: "32L", swItem: "102871654" },
+  { style: "pro-kneepad", color: "navy", waist: "38", length: "34L", swItem: "102871662" },
+  { style: "pro-kneepad", color: "navy", waist: "38", length: "36L", swItem: "102871670" },
+  { style: "pro-kneepad", color: "navy", waist: "40", length: "30L", swItem: "102871688" },
+  { style: "pro-kneepad", color: "navy", waist: "40", length: "32L", swItem: "102871696" },
+  { style: "pro-kneepad", color: "navy", waist: "40", length: "34L", swItem: "102871704" },
+
+  // PRO Rust Kneepad Pants (Men's)
+  { style: "pro-kneepad", color: "rust", waist: "30", length: "30L", swItem: "102872017" },
+  { style: "pro-kneepad", color: "rust", waist: "30", length: "32L", swItem: "102872025" },
+  { style: "pro-kneepad", color: "rust", waist: "30", length: "34L", swItem: "102872033" },
+  { style: "pro-kneepad", color: "rust", waist: "30", length: "36L", swItem: "102872041" },
+  { style: "pro-kneepad", color: "rust", waist: "32", length: "28L", swItem: "102872058" },
+  { style: "pro-kneepad", color: "rust", waist: "32", length: "30L", swItem: "102872074" },
+  { style: "pro-kneepad", color: "rust", waist: "32", length: "32L", swItem: "102872082" },
+  { style: "pro-kneepad", color: "rust", waist: "32", length: "34L", swItem: "102872090" },
+  { style: "pro-kneepad", color: "rust", waist: "32", length: "36L", swItem: "102872108" },
+  { style: "pro-kneepad", color: "rust", waist: "34", length: "28L", swItem: "102872116" },
+  { style: "pro-kneepad", color: "rust", waist: "34", length: "30L", swItem: "102872124" },
+  { style: "pro-kneepad", color: "rust", waist: "34", length: "32L", swItem: "102872132" },
+  { style: "pro-kneepad", color: "rust", waist: "34", length: "34L", swItem: "102872140" },
+  { style: "pro-kneepad", color: "rust", waist: "34", length: "36L", swItem: "102872157" },
+  { style: "pro-kneepad", color: "rust", waist: "36", length: "28L", swItem: "102872165" },
+  { style: "pro-kneepad", color: "rust", waist: "36", length: "30L", swItem: "102872181" },
+  { style: "pro-kneepad", color: "rust", waist: "36", length: "32L", swItem: "102872199" },
+  { style: "pro-kneepad", color: "rust", waist: "36", length: "34L", swItem: "102872207" },
+  { style: "pro-kneepad", color: "rust", waist: "36", length: "36L", swItem: "102872215" },
+  { style: "pro-kneepad", color: "rust", waist: "38", length: "28L", swItem: "102872223" },
+  { style: "pro-kneepad", color: "rust", waist: "38", length: "30L", swItem: "102872231" },
+  { style: "pro-kneepad", color: "rust", waist: "38", length: "32L", swItem: "102872249" },
+  { style: "pro-kneepad", color: "rust", waist: "38", length: "34L", swItem: "102872256" },
+  { style: "pro-kneepad", color: "rust", waist: "38", length: "36L", swItem: "102872264" },
+  { style: "pro-kneepad", color: "rust", waist: "40", length: "30L", swItem: "102872272" },
+  { style: "pro-kneepad", color: "rust", waist: "40", length: "32L", swItem: "102872298" },
+  { style: "pro-kneepad", color: "rust", waist: "40", length: "34L", swItem: "102872306" },
+
+  // PRO Slate Kneepad Pants (Men's)
+  { style: "pro-kneepad", color: "slate", waist: "30", length: "28L", swItem: "103221792" },
+  { style: "pro-kneepad", color: "slate", waist: "30", length: "30L", swItem: "102517000" },
+  { style: "pro-kneepad", color: "slate", waist: "30", length: "32L", swItem: "103221800" },
+  { style: "pro-kneepad", color: "slate", waist: "30", length: "34L", swItem: "103221818" },
+  { style: "pro-kneepad", color: "slate", waist: "30", length: "36L", swItem: "103221826" },
+  { style: "pro-kneepad", color: "slate", waist: "32", length: "28L", swItem: "103221834" },
+  { style: "pro-kneepad", color: "slate", waist: "32", length: "30L", swItem: "102517018" },
+  { style: "pro-kneepad", color: "slate", waist: "32", length: "32L", swItem: "102517026" },
+  { style: "pro-kneepad", color: "slate", waist: "32", length: "34L", swItem: "103221842" },
+  { style: "pro-kneepad", color: "slate", waist: "32", length: "36L", swItem: "103221859" },
+  { style: "pro-kneepad", color: "slate", waist: "34", length: "28L", swItem: "103221867" },
+  { style: "pro-kneepad", color: "slate", waist: "34", length: "30L", swItem: "102517034" },
+  { style: "pro-kneepad", color: "slate", waist: "34", length: "32L", swItem: "102517042" },
+  { style: "pro-kneepad", color: "slate", waist: "34", length: "34L", swItem: "102517059" },
+  { style: "pro-kneepad", color: "slate", waist: "34", length: "36L", swItem: "103221875" },
+  { style: "pro-kneepad", color: "slate", waist: "36", length: "28L", swItem: "103221891" },
+  { style: "pro-kneepad", color: "slate", waist: "36", length: "30L", swItem: "102517067" },
+  { style: "pro-kneepad", color: "slate", waist: "36", length: "32L", swItem: "102517075" },
+  { style: "pro-kneepad", color: "slate", waist: "36", length: "34L", swItem: "103221909" },
+  { style: "pro-kneepad", color: "slate", waist: "36", length: "36L", swItem: "103221917" },
+  { style: "pro-kneepad", color: "slate", waist: "38", length: "28L", swItem: "103221925" },
+  { style: "pro-kneepad", color: "slate", waist: "38", length: "30L", swItem: "102517091" },
+  { style: "pro-kneepad", color: "slate", waist: "38", length: "32L", swItem: "102517109" },
+  { style: "pro-kneepad", color: "slate", waist: "38", length: "34L", swItem: "103221933" },
+  { style: "pro-kneepad", color: "slate", waist: "38", length: "36L", swItem: "103221941" },
+  { style: "pro-kneepad", color: "slate", waist: "40", length: "28L", swItem: "103221958" },
+  { style: "pro-kneepad", color: "slate", waist: "40", length: "30L", swItem: "103221966" },
+  { style: "pro-kneepad", color: "slate", waist: "40", length: "32L", swItem: "103221974" },
+  { style: "pro-kneepad", color: "slate", waist: "40", length: "34L", swItem: "103221982" },
+  { style: "pro-kneepad", color: "slate", waist: "40", length: "36L", swItem: "103222006" },
+  { style: "pro-kneepad", color: "slate", waist: "42", length: "28L", swItem: "103222014" },
+  { style: "pro-kneepad", color: "slate", waist: "42", length: "30L", swItem: "103222022" },
+  { style: "pro-kneepad", color: "slate", waist: "42", length: "32L", swItem: "103222030" },
+  { style: "pro-kneepad", color: "slate", waist: "42", length: "34L", swItem: "103222048" },
+  { style: "pro-kneepad", color: "slate", waist: "42", length: "36L", swItem: "103222055" },
+  { style: "pro-kneepad", color: "slate", waist: "44", length: "28L", swItem: "103222063" },
+  { style: "pro-kneepad", color: "slate", waist: "44", length: "30L", swItem: "103222071" },
+  { style: "pro-kneepad", color: "slate", waist: "44", length: "32L", swItem: "103222089" },
+  { style: "pro-kneepad", color: "slate", waist: "44", length: "34L", swItem: "103222097" },
+  { style: "pro-kneepad", color: "slate", waist: "44", length: "36L", swItem: "103222113" },
+
+  // PRO Tumbleweed Kneepad Pants (Men's)
+  { style: "pro-kneepad", color: "tumbleweed", waist: "30", length: "28L", swItem: "103222121" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "30", length: "30L", swItem: "103222139" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "30", length: "32L", swItem: "103222147" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "30", length: "34L", swItem: "103222154" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "30", length: "36L", swItem: "103222162" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "32", length: "28L", swItem: "103222170" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "32", length: "30L", swItem: "103222188" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "32", length: "32L", swItem: "103222196" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "32", length: "34L", swItem: "103222204" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "32", length: "36L", swItem: "103222220" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "34", length: "28L", swItem: "103222238" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "34", length: "30L", swItem: "103222246" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "34", length: "32L", swItem: "103222253" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "34", length: "34L", swItem: "103222261" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "34", length: "36L", swItem: "103222279" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "36", length: "28L", swItem: "103222287" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "36", length: "30L", swItem: "103222295" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "36", length: "32L", swItem: "103222303" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "36", length: "34L", swItem: "103222311" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "36", length: "36L", swItem: "103222337" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "38", length: "28L", swItem: "103222345" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "38", length: "30L", swItem: "103222352" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "38", length: "32L", swItem: "103222360" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "38", length: "34L", swItem: "103222378" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "38", length: "36L", swItem: "103222386" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "40", length: "28L", swItem: "103222394" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "40", length: "30L", swItem: "103222402" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "40", length: "32L", swItem: "103222410" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "40", length: "34L", swItem: "103222428" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "40", length: "36L", swItem: "103222444" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "42", length: "28L", swItem: "103222451" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "42", length: "30L", swItem: "103222469" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "42", length: "32L", swItem: "103222477" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "42", length: "34L", swItem: "103222485" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "42", length: "36L", swItem: "103222493" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "44", length: "28L", swItem: "103222501" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "44", length: "30L", swItem: "103222519" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "44", length: "32L", swItem: "103222527" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "44", length: "34L", swItem: "103222535" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "44", length: "36L", swItem: "103222550" },
+
+  // SHORTS Black (Men's)
+  { style: "shorts-men", color: "black", waist: "30", length: "10", swItem: "102871472" },
+  { style: "shorts-men", color: "black", waist: "32", length: "10", swItem: "102871498" },
+  { style: "shorts-men", color: "black", waist: "34", length: "10", swItem: "102871506" },
+  { style: "shorts-men", color: "black", waist: "36", length: "10", swItem: "102871514" },
+  { style: "shorts-men", color: "black", waist: "38", length: "10", swItem: "102871522" },
+  { style: "shorts-men", color: "black", waist: "40", length: "10", swItem: "102871530" },
+
+  // SHORTS Navy (Men's)
+  { style: "shorts-men", color: "navy", waist: "30", length: "10", swItem: "102871415" },
+  { style: "shorts-men", color: "navy", waist: "32", length: "10", swItem: "102871423" },
+  { style: "shorts-men", color: "navy", waist: "34", length: "10", swItem: "102871431" },
+  { style: "shorts-men", color: "navy", waist: "36", length: "10", swItem: "102871449" },
+  { style: "shorts-men", color: "navy", waist: "38", length: "10", swItem: "102871456" },
+  { style: "shorts-men", color: "navy", waist: "40", length: "10", swItem: "102871464" },
+
+  // SHORTS Rust (Men's)
+  { style: "shorts-men", color: "rust", waist: "30", length: "10", swItem: "102871548" },
+  { style: "shorts-men", color: "rust", waist: "32", length: "10", swItem: "102871555" },
+  { style: "shorts-men", color: "rust", waist: "34", length: "10", swItem: "102871563" },
+  { style: "shorts-men", color: "rust", waist: "36", length: "10", swItem: "102871571" },
+  { style: "shorts-men", color: "rust", waist: "38", length: "10", swItem: "102871589" },
+  { style: "shorts-men", color: "rust", waist: "40", length: "10", swItem: "102871605" },
+
+  // SHORTS Slate (Men's)
+  { style: "shorts-men", color: "slate", waist: "30", length: "11", swItem: "103222568" },
+  { style: "shorts-men", color: "slate", waist: "32", length: "11", swItem: "103222576" },
+  { style: "shorts-men", color: "slate", waist: "34", length: "11", swItem: "103222584" },
+  { style: "shorts-men", color: "slate", waist: "36", length: "11", swItem: "103222592" },
+  { style: "shorts-men", color: "slate", waist: "38", length: "11", swItem: "103222600" },
+  { style: "shorts-men", color: "slate", waist: "40", length: "11", swItem: "103222618" },
+  { style: "shorts-men", color: "slate", waist: "42", length: "11", swItem: "103222626" },
+  { style: "shorts-men", color: "slate", waist: "44", length: "11", swItem: "103222634" },
+
+  // SHORTS Tumbleweed (Men's)
+  { style: "shorts-men", color: "tumbleweed", waist: "30", length: "11", swItem: "103222642" },
+  { style: "shorts-men", color: "tumbleweed", waist: "32", length: "11", swItem: "103221016" },
+  { style: "shorts-men", color: "tumbleweed", waist: "34", length: "11", swItem: "103221024" },
+  { style: "shorts-men", color: "tumbleweed", waist: "36", length: "11", swItem: "103221032" },
+  { style: "shorts-men", color: "tumbleweed", waist: "38", length: "11", swItem: "103221040" },
+  { style: "shorts-men", color: "tumbleweed", waist: "40", length: "11", swItem: "103221057" },
+  { style: "shorts-men", color: "tumbleweed", waist: "42", length: "11", swItem: "103221065" },
+  { style: "shorts-men", color: "tumbleweed", waist: "44", length: "11", swItem: "103221073" },
+
+  // WOMEN'S CORE White Pants
+  { style: "core-women", color: "white", waist: "000", length: "28L", swItem: "103391330" },
+  { style: "core-women", color: "white", waist: "00", length: "28L", swItem: "103391447" },
+  { style: "core-women", color: "white", waist: "00", length: "30L", swItem: "103391553" },
+  { style: "core-women", color: "white", waist: "0", length: "28L", swItem: "103391579" },
+  { style: "core-women", color: "white", waist: "0", length: "30L", swItem: "103391587" },
+  { style: "core-women", color: "white", waist: "0", length: "32L", swItem: "103391595" },
+  { style: "core-women", color: "white", waist: "2", length: "28L", swItem: "103391603" },
+  { style: "core-women", color: "white", waist: "2", length: "30L", swItem: "103391611" },
+  { style: "core-women", color: "white", waist: "2", length: "32L", swItem: "103391629" },
+  { style: "core-women", color: "white", waist: "4", length: "28L", swItem: "103391348" },
+  { style: "core-women", color: "white", waist: "4", length: "30L", swItem: "103391355" },
+  { style: "core-women", color: "white", waist: "4", length: "32L", swItem: "103391363" },
+  { style: "core-women", color: "white", waist: "6", length: "28L", swItem: "103391371" },
+  { style: "core-women", color: "white", waist: "6", length: "30L", swItem: "103391389" },
+  { style: "core-women", color: "white", waist: "6", length: "32L", swItem: "103391397" },
+  { style: "core-women", color: "white", waist: "8", length: "28L", swItem: "103391405" },
+  { style: "core-women", color: "white", waist: "8", length: "30L", swItem: "103391413" },
+  { style: "core-women", color: "white", waist: "8", length: "32L", swItem: "103391421" },
+  { style: "core-women", color: "white", waist: "10", length: "28L", swItem: "103391439" },
+  { style: "core-women", color: "white", waist: "10", length: "30L", swItem: "103391454" },
+  { style: "core-women", color: "white", waist: "10", length: "32L", swItem: "103391462" },
+  { style: "core-women", color: "white", waist: "12", length: "28L", swItem: "103391470" },
+  { style: "core-women", color: "white", waist: "12", length: "30L", swItem: "103391488" },
+  { style: "core-women", color: "white", waist: "12", length: "32L", swItem: "103391496" },
+  { style: "core-women", color: "white", waist: "14", length: "28L", swItem: "103391504" },
+  { style: "core-women", color: "white", waist: "14", length: "30L", swItem: "103391512" },
+  { style: "core-women", color: "white", waist: "14", length: "32L", swItem: "103391520" },
+  { style: "core-women", color: "white", waist: "16", length: "28L", swItem: "103391538" },
+  { style: "core-women", color: "white", waist: "16", length: "30L", swItem: "103391546" },
+  { style: "core-women", color: "white", waist: "16", length: "32L", swItem: "103391561" }
+];
+
+    let currentStep = 1;
+    let lang = 'en';
+    const selection = { style: '', color: '', waist: '', length: '' };
+
+function selectLanguage(language) {
+  lang = language;
+  showStep(2);
+
+  // 🔄 Update translated labels
+  document.getElementById("step2-text").innerText = translations[lang].titles.style;
+  document.getElementById("step3-text").innerText = translations[lang].titles.color;
+  document.getElementById("step4-waist-text").innerText = translations[lang].titles.waist;
+  document.getElementById("step4-length-text").innerText = translations[lang].titles.length;
+
+  // 🔄 Re-render options in selected language
+  renderStyleOptions();
+  renderColorOptions();
+  renderWaistOptions();
+  renderLengthOptions();
+}
+
+
+    function renderStyleOptions() {
+      const container = document.getElementById('style-options');
+      container.innerHTML = '';
+      styles.forEach(s => {
+        const btn = document.createElement('button');
+        btn.className = 'option-button';
+        btn.innerText = s[lang];
+        btn.onclick = () => {
+          selection.style = s.value;
+          highlightSelected(container, btn);
+        };
+        container.appendChild(btn);
+      });
+    }
+
+    function renderColorOptions() {
+  const container = document.getElementById('color-options');
+  container.innerHTML = '';
+  colors.forEach(c => {
+    const btn = document.createElement('button');
+    btn.className = `option-button color-button color-${c}`;
+    btn.innerText = translations[lang].colors[c];
+    btn.onclick = () => {
+      selection.color = c;
+      highlightSelected(container, btn);
+    };
+    container.appendChild(btn);
+  });
+}
+
+    function renderWaistOptions() {
+      const container = document.getElementById('waist-options');
+      container.innerHTML = '';
+      waistSizes.forEach(w => {
+        const btn = document.createElement('button');
+        btn.className = 'option-button';
+        btn.innerText = w;
+        btn.onclick = () => {
+          selection.waist = w;
+          highlightSelected(container, btn);
+        };
+        container.appendChild(btn);
+      });
+    }
+
+    function renderLengthOptions() {
+      const container = document.getElementById('length-options');
+      container.innerHTML = '';
+      lengthSizes.forEach(l => {
+        const btn = document.createElement('button');
+        btn.className = 'option-button';
+        btn.innerText = l;
+        btn.onclick = () => {
+          selection.length = l;
+          highlightSelected(container, btn);
+        };
+        container.appendChild(btn);
+      });
+    }
+
+    function highlightSelected(container, selectedBtn) {
+      const buttons = container.querySelectorAll('button');
+      buttons.forEach(b => b.classList.remove('selected'));
+      selectedBtn.classList.add('selected');
+    }
+
+    function showStep(stepNumber) {
+      document.querySelectorAll('.step').forEach((el, idx) => {
+        el.classList.toggle('active', idx === stepNumber - 1);
+      });
+      currentStep = stepNumber;
+      if (currentStep === 5) updateSummary();
+    }
+
+    function nextStep() {
+      if (currentStep < 5) showStep(currentStep + 1);
+    }
+
+    function prevStep() {
+      if (currentStep > 1) showStep(currentStep - 1);
+    }
+
+    function updateSummary() {
+      const swId = findItemNumber(selection.style, selection.color, selection.waist, selection.length);
+      document.getElementById('summary-style').innerText = swId;
+      document.getElementById('summary-color').innerText = translations[lang].colors[selection.color];
+      document.getElementById('summary-waist').innerText = selection.waist;
+      document.getElementById('summary-length').innerText = selection.length;
+      document.getElementById('summary-item').innerText = swId;
+    }
+
+    function findItemNumber(style, color, waist, length) {
+      const w = waist.replace('W', '');
+      const match = productData.find(p =>
+        p.style === style &&
+        p.color === color &&
+        p.waist === w &&
+        p.length === length
+      );
+      return match ? match.swItem : 'ITEM NOT FOUND';
+    }
+  </script>
+</body>
+</html>

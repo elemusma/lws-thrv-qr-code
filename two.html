@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thrive Workwear Product Selector</title>
+</head>
+<body>
+  <style>
+    div#smsbump-form-357315 {
+    display: none;
+}
+    .jdgm-revs-tab-btn.btn { display: none; }
+    div#shopify-section-sections--21122713944099__header { display: none; }
+    footer#footer { display: none; }
+    
+    * { box-sizing: border-box; }
+    
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      color: #000;
+      text-align: center;
+    }
+    
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 0px 20px;
+    }
+    
+    @media only screen and (min-width: 768px) {
+      .container {
+        max-width: 900px;
+        padding: 0px 40px;
+      }
+    }
+    
+    @media only screen and (min-width: 1068px) {
+      .container {
+        max-width: 1200px;
+        padding: 0px 60px;
+      }
+    }
+    
+    .logo {
+      width: 100px;
+      margin: 20px auto;
+    }
+    
+    @media only screen and (min-width: 768px) {
+      .logo {
+        width: 140px;
+        margin: 30px auto;
+      }
+    }
+    
+    .progress-summary {
+      font-size: 12px;
+      color: #576658;
+      margin: 10px 0 20px;
+      text-align: center;
+      min-height: 20px;
+    }
+    
+    @media only screen and (min-width: 768px) {
+      .progress-summary {
+        font-size: 14px;
+        margin: 15px 0 30px;
+      }
+    }
+    
+    .progress-summary strong {
+      color: #232221;
+    }
+    
+    .step { display: none; }
+    .step.active { display: block; }
+    
+    .button-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    
+    @media only screen and (min-width: 768px) {
+      .button-row {
+        gap: 20px;
+        margin-top: 30px;
+        justify-content: center;
+      }
+    }
+    
+    .button {
+      flex: 1;
+      padding: 10px;
+      font-size: 14px;
+      min-width: 150px;
+      background: #576658;
+      border: none;
+      border-radius: 20px;
+      font-weight: bold;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.104, 0.204, 0.492, 1);
+    }
+    
+    @media only screen and (min-width: 768px) {
+      .button {
+        flex: 0 1 auto;
+        min-width: 200px;
+        padding: 14px 30px;
+        font-size: 16px;
+      }
+    }
+    
+    button.button:hover {
+      border: 1px solid #576658;
+      background: #fff;
+      color: #576658;
+    }
+    
+    .button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    .button:disabled:hover {
+      background: #576658;
+      color: #fff;
+      border: none;
+    }
+    
+    .option-button {
+      padding: 10px;
+      margin: 6px 4px;
+      width: 45%;
+      border-radius: 8px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 14px;
+      background: white;
+      color: #232221;
+      transition: all .25s ease-in-out;
+      position: relative;
+      border: 2px solid transparent;
+    }
+    
+    @media only screen and (min-width: 768px) {
+      .option-button {
+        width: 30%;
+        margin: 8px;
+        padding: 15px;
+        font-size: 16px;
+      }
+    }
+    
+    @media only screen and (min-width: 1068px) {
+      .option-button {
+        width: 23%;
+      }
+    }
+    
+    .option-button.selected {
+      box-shadow: 0 0 0 3px #576658;
+      background: #232221;
+      color: white;
+    }
+    
+    #color-options .option-button.selected::after {
+      content: "✓";
+      font-size: 16px;
+      font-weight: bold;
+      color: #576658;
+      position: absolute;
+      top: 50%;
+      right: 50%;
+      transform: translate(50%, 50%);
+    }
+    
+    @media only screen and (min-width: 768px) {
+      #color-options .option-button.selected::after {
+        font-size: 20px;
+      }
+    }
+    
+    .color-button { color: #fff; }
+    .color-white,.color-white.selected { background: #fff; color: #000; border: 2px solid #232221; }
+    .color-black,.color-black.selected { background: #000; }
+    .color-navy,.color-navy.selected { background: #1c3d6e; }
+    .color-rust,.color-rust.selected { background: #b1692e; }
+    .color-slate,.color-slate.selected { background: #6c6c6c; }
+    .color-tumbleweed,.color-tumbleweed.selected { background: #d6b16d; color: #000; }
+    
+    .summary-section { text-align: left; }
+    
+    .summary-flex {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+    
+    @media only screen and (min-width: 768px) {
+      .summary-flex {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 40px;
+      }
+    }
+    
+    .sw-logo {
+      width: 150px;
+      margin: 20px auto 10px;
+    }
+    
+    @media only screen and (min-width: 768px) {
+      .sw-logo {
+        width: 200px;
+        margin: 30px auto 20px;
+      }
+    }
+    
+    .item-number {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    
+    @media only screen and (min-width: 768px) {
+      .item-number {
+        font-size: 22px;
+      }
+    }
+    
+    #summary-item {
+      color: red;
+    }
+    
+    .side-by-side {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    @media only screen and (min-width: 768px) {
+      .side-by-side {
+        flex-direction: row;
+        gap: 40px;
+      }
+    }
+    
+    .side-by-side > div {
+      width: 100%;
+    }
+    
+    #color-options {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    #color-options .option-button {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      font-size: 11px;
+      margin: 10px;
+    }
+    
+    @media only screen and (min-width: 768px) {
+      #color-options .option-button {
+        width: 120px;
+        height: 120px;
+        font-size: 12px;
+        margin: 15px;
+      }
+    }
+    
+    #color-options .option-button:before {
+      content: "";
+      border: 1px solid #eaeaea;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 105px;
+      height: 105px;
+      border-radius: 50%;
+    }
+    
+    @media only screen and (min-width: 768px) {
+      #color-options .option-button:before {
+        width: 125px;
+        height: 125px;
+      }
+    }
+    
+    .side-by-side .option-button { 
+      width: 16%; 
+      min-width: 60px;
+    }
+    
+    @media only screen and (min-width: 768px) {
+      .side-by-side .option-button {
+        width: 18%;
+        min-width: 80px;
+      }
+    }
+    
+    #style-options,
+    #waist-options,
+    #length-options {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .step p {
+      font-size: 16px;
+      margin: 15px 0;
+    }
+    
+    @media only screen and (min-width: 768px) {
+      .step p {
+        font-size: 18px;
+        margin: 20px 0;
+      }
+    }
+    
+    #preview-image {
+      max-width: 170px;
+      margin-top: 20px;
+    }
+    
+    @media only screen and (min-width: 768px) {
+      #preview-image {
+        max-width: 250px;
+      }
+    }
+    
+    .summary-section {
+      flex: 1;
+    }
+    
+    .summary-section p {
+      margin: 8px 0;
+      font-size: 14px;
+    }
+    
+    @media only screen and (min-width: 768px) {
+      .summary-section p {
+        font-size: 16px;
+        margin: 12px 0;
+      }
+    }
+  </style>
+
+  <div class="container">
+    <img src="https://resources.latinowebstudio.com/wp-content/uploads/2025/10/Thrive-Logo.png" alt="Thrive Logo" class="logo">
+    <div class="progress-summary" id="progress-summary"></div>
+
+    <div class="step active" id="step1">
+      <p>Welcome to the Thrive Workwear Product Selection Guide</p>
+      <button class="button" onclick="selectLanguage('en')"><span>Continue in English</span></button>
+      <p style="margin-top: 35px;">Bienvenido al selector de productos de ropa de trabajo Thrive Workwear</p>
+      <button class="button" onclick="selectLanguage('es')"><span>Continuar en Español</span></button>
+    </div>
+
+    <div class="step" id="step2">
+      <p id="step2-text">What STYLE of workwear?</p>
+      <div id="style-options"></div>
+      <div class="button-row">
+        <button class="button" data-action="back" onclick="prevStep()"><span>BACK</span></button>
+        <button class="button" data-action="next" onclick="nextStep()"><span>NEXT</span></button>
+      </div>
+    </div>
+
+    <div class="step" id="step3">
+      <p id="step3-text">What Color?</p>
+      <div id="color-options"></div>
+      <div class="button-row">
+        <button class="button" data-action="back" onclick="prevStep()"><span>BACK</span></button>
+        <button class="button" data-action="next" onclick="nextStep()"><span>NEXT</span></button>
+      </div>
+    </div>
+
+    <div class="step" id="step4">
+      <div class="side-by-side">
+        <div>
+          <p id="step4-waist-text">What WAIST size?</p>
+          <div id="waist-options"></div>
+        </div>
+        <div>
+          <p id="step4-length-text">What LENGTH size?</p>
+          <div id="length-options"></div>
+        </div>
+      </div>
+      <div class="button-row">
+        <button class="button" data-action="back" onclick="prevStep()"><span>BACK</span></button>
+        <button class="button" data-action="next" onclick="nextStep()"><span>NEXT</span></button>
+      </div>
+    </div>
+
+    <div class="step" id="step5">
+      <div class="summary-flex">
+        <div class="summary-section">
+          <p><strong><span id="summary-style-label">STYLE:</span></strong> <span id="summary-style"></span></p>
+          <p><strong><span id="summary-color-label">COLOR:</span></strong> <span id="summary-color"></span></p>
+          <p><strong><span id="summary-waist-label">Waist Size:</span></strong> <span id="summary-waist"></span></p>
+          <p><strong><span id="summary-length-label">Length Size:</span></strong> <span id="summary-length"></span></p>
+        </div>
+        <img id="preview-image" src="" alt="Product Image">
+        <div id="image-fallback-text" style="display:none; font-weight:bold; color:red;"></div>
+      </div>
+      <p class="item-number"><span id="item-number-label">ITEM NUMBER</span>: <span id="summary-item">TBD</span></p>
+      <p style="margin:0;"><span id="message-label">Please show this information to your SHERWIN-WILLIAMS store associate for ordering.</span><br><strong><span id="thank-you-label">THANK YOU</span>!</strong></p>
+      <img src="https://s7d2.scene7.com/is/image/sherwinwilliams/sw-logo-header-up?scl=1&fmt=png-alpha" alt="Sherwin Williams Logo" class="sw-logo" style="margin:0;">
+      <div class="button-row">
+        <button class="button" onclick="prevStep()" data-action="back"><span>BACK</span></button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+   const productData = [
+  // CORE White Pants (Men's)
+  { style: "core-basic", color: "white", waist: "28", length: "30L", swItem: "103461760",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+  { style: "core-basic", color: "white", waist: "30", length: "30L", swItem: "102730025",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+  { style: "core-basic", color: "white", waist: "30", length: "32L", swItem: "102730041",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+  { style: "core-basic", color: "white", waist: "30", length: "34L", swItem: "102730058",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+  { style: "core-basic", color: "white", waist: "30", length: "36L", swItem: "102730066",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+  { style: "core-basic", color: "white", waist: "32", length: "28L", swItem: "103129318",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+  { style: "core-basic", color: "white", waist: "32", length: "30L", swItem: "102730074",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+  { style: "core-basic", color: "white", waist: "32", length: "32L", swItem: "102730082",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+  { style: "core-basic", color: "white", waist: "32", length: "34L", swItem: "102730090",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+  { style: "core-basic", color: "white", waist: "32", length: "36L", swItem: "102730108",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+  { style: "core-basic", color: "white", waist: "34", length: "28L", swItem: "103129300",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+  { style: "core-basic", color: "white", waist: "34", length: "30L", swItem: "102730116",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+  { style: "core-basic", color: "white", waist: "34", length: "32L", swItem: "102730124",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+  { style: "core-basic", color: "white", waist: "34", length: "34L", swItem: "102730132",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+  { style: "core-basic", color: "white", waist: "34", length: "36L", swItem: "102730157",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+  { style: "core-basic", color: "white", waist: "36", length: "28L", swItem: "103129292",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+  { style: "core-basic", color: "white", waist: "36", length: "30L", swItem: "102730165",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+  { style: "core-basic", color: "white", waist: "36", length: "32L", swItem: "102730173",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+  { style: "core-basic", color: "white", waist: "36", length: "34L", swItem: "102730181",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+  { style: "core-basic", color: "white", waist: "36", length: "36L", swItem: "102730199",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+  { style: "core-basic", color: "white", waist: "38", length: "28L", swItem: "103070181",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+  { style: "core-basic", color: "white", waist: "38", length: "30L", swItem: "102730207",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+  { style: "core-basic", color: "white", waist: "38", length: "32L", swItem: "102730215",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+  { style: "core-basic", color: "white", waist: "38", length: "34L", swItem: "102730223",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+  { style: "core-basic", color: "white", waist: "38", length: "36L", swItem: "102730231",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+  { style: "core-basic", color: "white", waist: "40", length: "28L", swItem: "103148482",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+  { style: "core-basic", color: "white", waist: "40", length: "30L", swItem: "102730249",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+  { style: "core-basic", color: "white", waist: "40", length: "32L", swItem: "102730264",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+  { style: "core-basic", color: "white", waist: "40", length: "34L", swItem: "102730272",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+  { style: "core-basic", color: "white", waist: "40", length: "36L", swItem: "102730280",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+  { style: "core-basic", color: "white", waist: "42", length: "28L", swItem: "103148490",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+  { style: "core-basic", color: "white", waist: "42", length: "30L", swItem: "102730298",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+  { style: "core-basic", color: "white", waist: "42", length: "32L", swItem: "102730306",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+  { style: "core-basic", color: "white", waist: "42", length: "34L", swItem: "102730314",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+  { style: "core-basic", color: "white", waist: "42", length: "36L", swItem: "102730322",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+  { style: "core-basic", color: "white", waist: "44", length: "30L", swItem: "103461968",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+  { style: "core-basic", color: "white", waist: "44", length: "32L", swItem: "103461976",image: "https://thriveworkwear.com/cdn/shop/files/whiteCOREfront.png?v=1692107860&width=770" },
+
+  // Kneepad Inserts
+  { style: "kneepad-inserts", color: "n/a", waist: "n/a", length: "n/a", swItem: "102516978" },
+
+  // PRO White Kneepad Pants (Men's)
+  { style: "pro-kneepad", color: "white", waist: "28", length: "30L", swItem: "103461984",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+  { style: "pro-kneepad", color: "white", waist: "30", length: "30L", swItem: "102517083",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+  { style: "pro-kneepad", color: "white", waist: "30", length: "32L", swItem: "102729928",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+  { style: "pro-kneepad", color: "white", waist: "30", length: "34L", swItem: "102730033",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+  { style: "pro-kneepad", color: "white", waist: "30", length: "36L", swItem: "102730140",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+  { style: "pro-kneepad", color: "white", waist: "32", length: "28L", swItem: "103148425",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+  { style: "pro-kneepad", color: "white", waist: "32", length: "30L", swItem: "102517117",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+  { style: "pro-kneepad", color: "white", waist: "32", length: "32L", swItem: "102517125",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+  { style: "pro-kneepad", color: "white", waist: "32", length: "34L", swItem: "102730256",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+  { style: "pro-kneepad", color: "white", waist: "32", length: "36L", swItem: "102730363",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+  { style: "pro-kneepad", color: "white", waist: "34", length: "28L", swItem: "103148433",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+  { style: "pro-kneepad", color: "white", waist: "34", length: "30L", swItem: "102517133",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+  { style: "pro-kneepad", color: "white", waist: "34", length: "32L", swItem: "102517141",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+  { style: "pro-kneepad", color: "white", waist: "34", length: "34L", swItem: "102517158",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+  { style: "pro-kneepad", color: "white", waist: "34", length: "36L", swItem: "102730413",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+  { style: "pro-kneepad", color: "white", waist: "36", length: "28L", swItem: "103148441",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+  { style: "pro-kneepad", color: "white", waist: "36", length: "30L", swItem: "102517166",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+  { style: "pro-kneepad", color: "white", waist: "36", length: "32L", swItem: "102517174",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+  { style: "pro-kneepad", color: "white", waist: "36", length: "34L", swItem: "102730421",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+  { style: "pro-kneepad", color: "white", waist: "36", length: "36L", swItem: "102730439",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+  { style: "pro-kneepad", color: "white", waist: "38", length: "28L", swItem: "103148458",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+  { style: "pro-kneepad", color: "white", waist: "38", length: "30L", swItem: "102516986",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+  { style: "pro-kneepad", color: "white", waist: "38", length: "32L", swItem: "102516994",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+  { style: "pro-kneepad", color: "white", waist: "38", length: "34L", swItem: "102730447",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+  { style: "pro-kneepad", color: "white", waist: "38", length: "36L", swItem: "102729936",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+  { style: "pro-kneepad", color: "white", waist: "40", length: "28L", swItem: "103146466",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+  { style: "pro-kneepad", color: "white", waist: "40", length: "30L", swItem: "102729944",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+  { style: "pro-kneepad", color: "white", waist: "40", length: "32L", swItem: "102729951",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+  { style: "pro-kneepad", color: "white", waist: "40", length: "34L", swItem: "102729969",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+  { style: "pro-kneepad", color: "white", waist: "40", length: "36L", swItem: "102729977",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+  { style: "pro-kneepad", color: "white", waist: "42", length: "28L", swItem: "103148474",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+  { style: "pro-kneepad", color: "white", waist: "42", length: "30L", swItem: "102729985",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+  { style: "pro-kneepad", color: "white", waist: "42", length: "32L", swItem: "102729993",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+  { style: "pro-kneepad", color: "white", waist: "42", length: "34L", swItem: "102730009",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+  { style: "pro-kneepad", color: "white", waist: "42", length: "36L", swItem: "102730017",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+  { style: "pro-kneepad", color: "white", waist: "44", length: "30L", swItem: "103461992",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+  { style: "pro-kneepad", color: "white", waist: "44", length: "32L", swItem: "103462008",image: "https://thriveworkwear.com/cdn/shop/files/whitePROknees2.png?v=1692110458&width=770" },
+
+  // SHORTS White (Men's)
+  { style: "shorts-men", color: "white", waist: "30", length: "11", swItem: "102730330",image: "https://thriveworkwear.com/cdn/shop/files/whiteSHORTSfront_22592779-dc24-441e-85e1-d395e63336e2.png?v=1692120161&width=770" },
+  { style: "shorts-men", color: "white", waist: "32", length: "11", swItem: "102730348",image: "https://thriveworkwear.com/cdn/shop/files/whiteSHORTSfront_22592779-dc24-441e-85e1-d395e63336e2.png?v=1692120161&width=770" },
+  { style: "shorts-men", color: "white", waist: "34", length: "11", swItem: "102730355",image: "https://thriveworkwear.com/cdn/shop/files/whiteSHORTSfront_22592779-dc24-441e-85e1-d395e63336e2.png?v=1692120161&width=770" },
+  { style: "shorts-men", color: "white", waist: "36", length: "11", swItem: "102730371",image: "https://thriveworkwear.com/cdn/shop/files/whiteSHORTSfront_22592779-dc24-441e-85e1-d395e63336e2.png?v=1692120161&width=770" },
+  { style: "shorts-men", color: "white", waist: "38", length: "11", swItem: "102730389",image: "https://thriveworkwear.com/cdn/shop/files/whiteSHORTSfront_22592779-dc24-441e-85e1-d395e63336e2.png?v=1692120161&width=770" },
+  { style: "shorts-men", color: "white", waist: "40", length: "11", swItem: "102730397",image: "https://thriveworkwear.com/cdn/shop/files/whiteSHORTSfront_22592779-dc24-441e-85e1-d395e63336e2.png?v=1692120161&width=770" },
+  { style: "shorts-men", color: "white", waist: "42", length: "11", swItem: "102730405",image: "https://thriveworkwear.com/cdn/shop/files/whiteSHORTSfront_22592779-dc24-441e-85e1-d395e63336e2.png?v=1692120161&width=770" },
+
+  // CORE Black Pants (Men's)
+  { style: "core-basic", color: "black", waist: "30", length: "30L", swItem: "102871142",image:"https://thriveworkwear.com/cdn/shop/files/blackCOREfront.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "black", waist: "30", length: "32L", swItem: "102871167",image:"https://thriveworkwear.com/cdn/shop/files/blackCOREfront.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "black", waist: "30", length: "34L", swItem: "102871175",image:"https://thriveworkwear.com/cdn/shop/files/blackCOREfront.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "black", waist: "30", length: "36L", swItem: "102871183",image:"https://thriveworkwear.com/cdn/shop/files/blackCOREfront.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "black", waist: "32", length: "28L", swItem: "102871191",image:"https://thriveworkwear.com/cdn/shop/files/blackCOREfront.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "black", waist: "32", length: "30L", swItem: "102871209",image:"https://thriveworkwear.com/cdn/shop/files/blackCOREfront.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "black", waist: "32", length: "32L", swItem: "102871217",image:"https://thriveworkwear.com/cdn/shop/files/blackCOREfront.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "black", waist: "32", length: "34L", swItem: "102871225",image:"https://thriveworkwear.com/cdn/shop/files/blackCOREfront.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "black", waist: "32", length: "36L", swItem: "102871233",image:"https://thriveworkwear.com/cdn/shop/files/blackCOREfront.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "black", waist: "34", length: "28L", swItem: "102871241",image:"https://thriveworkwear.com/cdn/shop/files/blackCOREfront.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "black", waist: "34", length: "30L", swItem: "102871258",image:"https://thriveworkwear.com/cdn/shop/files/blackCOREfront.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "black", waist: "34", length: "32L", swItem: "102871274",image:"https://thriveworkwear.com/cdn/shop/files/blackCOREfront.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "black", waist: "34", length: "34L", swItem: "102872413",image:"https://thriveworkwear.com/cdn/shop/files/blackCOREfront.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "black", waist: "34", length: "36L", swItem: "102872421",image:"https://thriveworkwear.com/cdn/shop/files/blackCOREfront.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "black", waist: "36", length: "28L", swItem: "102872439",image:"https://thriveworkwear.com/cdn/shop/files/blackCOREfront.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "black", waist: "36", length: "30L", swItem: "102872447",image:"https://thriveworkwear.com/cdn/shop/files/blackCOREfront.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "black", waist: "36", length: "32L", swItem: "102872454",image:"https://thriveworkwear.com/cdn/shop/files/blackCOREfront.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "black", waist: "36", length: "34L", swItem: "102872462",image:"https://thriveworkwear.com/cdn/shop/files/blackCOREfront.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "black", waist: "36", length: "36L", swItem: "102872470",image:"https://thriveworkwear.com/cdn/shop/files/blackCOREfront.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "black", waist: "38", length: "28L", swItem: "102872488",image:"https://thriveworkwear.com/cdn/shop/files/blackCOREfront.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "black", waist: "38", length: "30L", swItem: "102872496",image:"https://thriveworkwear.com/cdn/shop/files/blackCOREfront.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "black", waist: "38", length: "32L", swItem: "102870722",image:"https://thriveworkwear.com/cdn/shop/files/blackCOREfront.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "black", waist: "38", length: "34L", swItem: "102870730",image:"https://thriveworkwear.com/cdn/shop/files/blackCOREfront.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "black", waist: "38", length: "36L", swItem: "102870748",image:"https://thriveworkwear.com/cdn/shop/files/blackCOREfront.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "black", waist: "40", length: "30L", swItem: "102870755",image:"https://thriveworkwear.com/cdn/shop/files/blackCOREfront.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "black", waist: "40", length: "32L", swItem: "102870763",image:"https://thriveworkwear.com/cdn/shop/files/blackCOREfront.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "black", waist: "40", length: "34L", swItem: "102870771",image:"https://thriveworkwear.com/cdn/shop/files/blackCOREfront.png?v=1692029746&width=770" },
+
+  // CORE Navy Pants (Men's)
+  { style: "core-basic", color: "navy", waist: "30", length: "30L", swItem: "102872314",image:"https://thriveworkwear.com/cdn/shop/files/navyCOREfront_navy.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "navy", waist: "30", length: "32L", swItem: "102872322",image:"https://thriveworkwear.com/cdn/shop/files/navyCOREfront_navy.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "navy", waist: "30", length: "34L", swItem: "102872330",image:"https://thriveworkwear.com/cdn/shop/files/navyCOREfront_navy.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "navy", waist: "30", length: "36L", swItem: "102872348",image:"https://thriveworkwear.com/cdn/shop/files/navyCOREfront_navy.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "navy", waist: "32", length: "28L", swItem: "102872355",image:"https://thriveworkwear.com/cdn/shop/files/navyCOREfront_navy.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "navy", waist: "32", length: "30L", swItem: "102872363",image:"https://thriveworkwear.com/cdn/shop/files/navyCOREfront_navy.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "navy", waist: "32", length: "32L", swItem: "102872371",image:"https://thriveworkwear.com/cdn/shop/files/navyCOREfront_navy.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "navy", waist: "32", length: "34L", swItem: "102872389",image:"https://thriveworkwear.com/cdn/shop/files/navyCOREfront_navy.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "navy", waist: "32", length: "36L", swItem: "102872405",image:"https://thriveworkwear.com/cdn/shop/files/navyCOREfront_navy.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "navy", waist: "34", length: "28L", swItem: "102870953",image:"https://thriveworkwear.com/cdn/shop/files/navyCOREfront_navy.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "navy", waist: "34", length: "30L", swItem: "102870961",image:"https://thriveworkwear.com/cdn/shop/files/navyCOREfront_navy.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "navy", waist: "34", length: "32L", swItem: "102870979",image:"https://thriveworkwear.com/cdn/shop/files/navyCOREfront_navy.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "navy", waist: "34", length: "34L", swItem: "102870987",image:"https://thriveworkwear.com/cdn/shop/files/navyCOREfront_navy.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "navy", waist: "34", length: "36L", swItem: "102870995",image:"https://thriveworkwear.com/cdn/shop/files/navyCOREfront_navy.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "navy", waist: "36", length: "28L", swItem: "102871001",image:"https://thriveworkwear.com/cdn/shop/files/navyCOREfront_navy.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "navy", waist: "36", length: "30L", swItem: "102871019",image:"https://thriveworkwear.com/cdn/shop/files/navyCOREfront_navy.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "navy", waist: "36", length: "32L", swItem: "102871027",image:"https://thriveworkwear.com/cdn/shop/files/navyCOREfront_navy.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "navy", waist: "36", length: "34L", swItem: "102871035",image:"https://thriveworkwear.com/cdn/shop/files/navyCOREfront_navy.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "navy", waist: "36", length: "36L", swItem: "102871050",image:"https://thriveworkwear.com/cdn/shop/files/navyCOREfront_navy.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "navy", waist: "38", length: "28L", swItem: "102871068",image:"https://thriveworkwear.com/cdn/shop/files/navyCOREfront_navy.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "navy", waist: "38", length: "30L", swItem: "102871076",image:"https://thriveworkwear.com/cdn/shop/files/navyCOREfront_navy.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "navy", waist: "38", length: "32L", swItem: "102871084",image:"https://thriveworkwear.com/cdn/shop/files/navyCOREfront_navy.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "navy", waist: "38", length: "34L", swItem: "102871092",image:"https://thriveworkwear.com/cdn/shop/files/navyCOREfront_navy.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "navy", waist: "38", length: "36L", swItem: "102871100",image:"https://thriveworkwear.com/cdn/shop/files/navyCOREfront_navy.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "navy", waist: "40", length: "30L", swItem: "102871118",image:"https://thriveworkwear.com/cdn/shop/files/navyCOREfront_navy.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "navy", waist: "40", length: "32L", swItem: "102871126",image:"https://thriveworkwear.com/cdn/shop/files/navyCOREfront_navy.png?v=1692029746&width=770" },
+  { style: "core-basic", color: "navy", waist: "40", length: "34L", swItem: "102871134",image:"https://thriveworkwear.com/cdn/shop/files/navyCOREfront_navy.png?v=1692029746&width=770" },
+
+  // CORE Rust Pants (Men's)
+  { style: "core-basic", color: "rust", waist: "30", length: "30L", swItem: "102870789",image:"https://thriveworkwear.com/cdn/shop/files/rustCOREfront_rust.png?v=1692028882&width=770" },
+  { style: "core-basic", color: "rust", waist: "30", length: "32L", swItem: "102870797",image:"https://thriveworkwear.com/cdn/shop/files/rustCOREfront_rust.png?v=1692028882&width=770" },
+  { style: "core-basic", color: "rust", waist: "30", length: "34L", swItem: "102870805",image:"https://thriveworkwear.com/cdn/shop/files/rustCOREfront_rust.png?v=1692028882&width=770" },
+  { style: "core-basic", color: "rust", waist: "30", length: "36L", swItem: "102870813",image:"https://thriveworkwear.com/cdn/shop/files/rustCOREfront_rust.png?v=1692028882&width=770" },
+  { style: "core-basic", color: "rust", waist: "32", length: "28L", swItem: "102870839",image:"https://thriveworkwear.com/cdn/shop/files/rustCOREfront_rust.png?v=1692028882&width=770" },
+  { style: "core-basic", color: "rust", waist: "32", length: "30L", swItem: "102870847",image:"https://thriveworkwear.com/cdn/shop/files/rustCOREfront_rust.png?v=1692028882&width=770" },
+  { style: "core-basic", color: "rust", waist: "32", length: "32L", swItem: "102870854",image:"https://thriveworkwear.com/cdn/shop/files/rustCOREfront_rust.png?v=1692028882&width=770" },
+  { style: "core-basic", color: "rust", waist: "32", length: "34L", swItem: "102870862",image:"https://thriveworkwear.com/cdn/shop/files/rustCOREfront_rust.png?v=1692028882&width=770" },
+  { style: "core-basic", color: "rust", waist: "32", length: "36L", swItem: "102870870",image:"https://thriveworkwear.com/cdn/shop/files/rustCOREfront_rust.png?v=1692028882&width=770" },
+  { style: "core-basic", color: "rust", waist: "34", length: "28L", swItem: "102870888",image:"https://thriveworkwear.com/cdn/shop/files/rustCOREfront_rust.png?v=1692028882&width=770" },
+  { style: "core-basic", color: "rust", waist: "34", length: "30L", swItem: "102870896",image:"https://thriveworkwear.com/cdn/shop/files/rustCOREfront_rust.png?v=1692028882&width=770" },
+  { style: "core-basic", color: "rust", waist: "34", length: "32L", swItem: "102870904",image:"https://thriveworkwear.com/cdn/shop/files/rustCOREfront_rust.png?v=1692028882&width=770" },
+  { style: "core-basic", color: "rust", waist: "34", length: "34L", swItem: "102870912",image:"https://thriveworkwear.com/cdn/shop/files/rustCOREfront_rust.png?v=1692028882&width=770" },
+  { style: "core-basic", color: "rust", waist: "34", length: "36L", swItem: "102870920",image:"https://thriveworkwear.com/cdn/shop/files/rustCOREfront_rust.png?v=1692028882&width=770" },
+  { style: "core-basic", color: "rust", waist: "36", length: "28L", swItem: "102870946",image:"https://thriveworkwear.com/cdn/shop/files/rustCOREfront_rust.png?v=1692028882&width=770" },
+  { style: "core-basic", color: "rust", waist: "36", length: "30L", swItem: "102871282",image:"https://thriveworkwear.com/cdn/shop/files/rustCOREfront_rust.png?v=1692028882&width=770" },
+  { style: "core-basic", color: "rust", waist: "36", length: "32L", swItem: "102871290",image:"https://thriveworkwear.com/cdn/shop/files/rustCOREfront_rust.png?v=1692028882&width=770" },
+  { style: "core-basic", color: "rust", waist: "36", length: "34L", swItem: "102871308",image:"https://thriveworkwear.com/cdn/shop/files/rustCOREfront_rust.png?v=1692028882&width=770" },
+  { style: "core-basic", color: "rust", waist: "36", length: "36L", swItem: "102871316",image:"https://thriveworkwear.com/cdn/shop/files/rustCOREfront_rust.png?v=1692028882&width=770" },
+  { style: "core-basic", color: "rust", waist: "38", length: "28L", swItem: "102871324",image:"https://thriveworkwear.com/cdn/shop/files/rustCOREfront_rust.png?v=1692028882&width=770" },
+  { style: "core-basic", color: "rust", waist: "38", length: "30L", swItem: "102871332",image:"https://thriveworkwear.com/cdn/shop/files/rustCOREfront_rust.png?v=1692028882&width=770" },
+  { style: "core-basic", color: "rust", waist: "38", length: "32L", swItem: "102871340",image:"https://thriveworkwear.com/cdn/shop/files/rustCOREfront_rust.png?v=1692028882&width=770" },
+  { style: "core-basic", color: "rust", waist: "38", length: "34L", swItem: "102871357",image:"https://thriveworkwear.com/cdn/shop/files/rustCOREfront_rust.png?v=1692028882&width=770" },
+  { style: "core-basic", color: "rust", waist: "38", length: "36L", swItem: "102871365",image:"https://thriveworkwear.com/cdn/shop/files/rustCOREfront_rust.png?v=1692028882&width=770" },
+  { style: "core-basic", color: "rust", waist: "40", length: "30L", swItem: "102871381",image:"https://thriveworkwear.com/cdn/shop/files/rustCOREfront_rust.png?v=1692028882&width=770" },
+  { style: "core-basic", color: "rust", waist: "40", length: "32L", swItem: "102871399",image:"https://thriveworkwear.com/cdn/shop/files/rustCOREfront_rust.png?v=1692028882&width=770" },
+  { style: "core-basic", color: "rust", waist: "40", length: "34L", swItem: "102871407",image:"https://thriveworkwear.com/cdn/shop/files/rustCOREfront_rust.png?v=1692028882&width=770" },
+
+  // CORE Slate Pants (Men's)
+  { style: "core-basic", color: "slate", waist: "30", length: "28L", swItem: "103221081",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "30", length: "30L", swItem: "103221099",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "30", length: "32L", swItem: "103221107",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "30", length: "34L", swItem: "103221123",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "30", length: "36L", swItem: "103221131",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "32", length: "28L", swItem: "103221149",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "32", length: "30L", swItem: "103221156",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "32", length: "32L", swItem: "103221164",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "32", length: "34L", swItem: "103221172",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "32", length: "36L", swItem: "103221180",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "34", length: "28L", swItem: "103221198",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "34", length: "30L", swItem: "103221206",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "34", length: "32L", swItem: "103221214",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "34", length: "34L", swItem: "103221230",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "34", length: "36L", swItem: "103221248",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "36", length: "28L", swItem: "103221255",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "36", length: "30L", swItem: "103221263",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "36", length: "32L", swItem: "103221271",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "36", length: "34L", swItem: "103221289",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "36", length: "36L", swItem: "103221297",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "38", length: "28L", swItem: "103221305",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "38", length: "30L", swItem: "103221313",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "38", length: "32L", swItem: "103221321",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "38", length: "34L", swItem: "103221347",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "38", length: "36L", swItem: "103221354",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "40", length: "28L", swItem: "103221362",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "40", length: "30L", swItem: "103221370",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "40", length: "32L", swItem: "103221388",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "40", length: "34L", swItem: "103221396",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "40", length: "36L", swItem: "103221404",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "42", length: "28L", swItem: "103221412",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "42", length: "30L", swItem: "103221420",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "42", length: "32L", swItem: "103221438",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "42", length: "34L", swItem: "103221453",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "42", length: "36L", swItem: "103221461",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "44", length: "28L", swItem: "103221479",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "44", length: "30L", swItem: "103221487",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "44", length: "32L", swItem: "103221495",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "44", length: "34L", swItem: "103221503",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+  { style: "core-basic", color: "slate", waist: "44", length: "36L", swItem: "103221511",image:"https://thriveworkwear.com/cdn/shop/files/slatefrontcore11.png?v=1722360348&width=770" },
+
+  // CORE Tumbleweed Pants (Men's)
+  { style: "core-basic", color: "tumbleweed", waist: "30", length: "28L", swItem: "103221529",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "30", length: "30L", swItem: "103221537",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "30", length: "32L", swItem: "103221545",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "30", length: "34L", swItem: "103221560",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "30", length: "36L", swItem: "103221578",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "32", length: "28L", swItem: "103221586",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "32", length: "30L", swItem: "103221594",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "32", length: "32L", swItem: "103221602",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "32", length: "34L", swItem: "103221610",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "32", length: "36L", swItem: "103221628",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "34", length: "28L", swItem: "103221636",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "34", length: "30L", swItem: "103221644",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "34", length: "32L", swItem: "103221651",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "34", length: "34L", swItem: "103221677",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "34", length: "36L", swItem: "103221685",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "36", length: "28L", swItem: "103221693",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "36", length: "30L", swItem: "103221701",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "36", length: "32L", swItem: "103221719",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "36", length: "34L", swItem: "103221727",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "36", length: "36L", swItem: "103221735",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "38", length: "28L", swItem: "103220992",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "38", length: "30L", swItem: "103221776",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "38", length: "32L", swItem: "103221883",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "38", length: "34L", swItem: "103221990",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "38", length: "36L", swItem: "103222105",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "40", length: "28L", swItem: "103222212",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "40", length: "30L", swItem: "103222329",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "40", length: "32L", swItem: "103222436",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "40", length: "34L", swItem: "103222543",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "40", length: "36L", swItem: "103221008",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "42", length: "28L", swItem: "103221115",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "42", length: "30L", swItem: "103221222",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "42", length: "32L", swItem: "103221339",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "42", length: "34L", swItem: "103221446",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "42", length: "36L", swItem: "103221552",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "44", length: "28L", swItem: "103221669",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "44", length: "30L", swItem: "103221743",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "44", length: "32L", swItem: "103221750",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "44", length: "34L", swItem: "103221768",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+  { style: "core-basic", color: "tumbleweed", waist: "44", length: "36L", swItem: "103221784",image:"https://thriveworkwear.com/cdn/shop/files/tumbleweedfrontCORE_5cb2ff7a-3618-487d-a1cc-edf49a352e29.png?v=1723484853&width=770" },
+
+  // PRO Black Kneepad Pants (Men's)
+  { style: "pro-kneepad", color: "black", waist: "30", length: "30L", swItem: "102871712",image:"https://thriveworkwear.com/cdn/shop/files/blackPROfront.png?v=1706181133&width=770" },
+  { style: "pro-kneepad", color: "black", waist: "30", length: "32L", swItem: "102871720",image:"https://thriveworkwear.com/cdn/shop/files/blackPROfront.png?v=1706181133&width=770" },
+  { style: "pro-kneepad", color: "black", waist: "30", length: "34L", swItem: "102871746",image:"https://thriveworkwear.com/cdn/shop/files/blackPROfront.png?v=1706181133&width=770" },
+  { style: "pro-kneepad", color: "black", waist: "30", length: "36L", swItem: "102871753",image:"https://thriveworkwear.com/cdn/shop/files/blackPROfront.png?v=1706181133&width=770" },
+  { style: "pro-kneepad", color: "black", waist: "32", length: "28L", swItem: "102871761",image:"https://thriveworkwear.com/cdn/shop/files/blackPROfront.png?v=1706181133&width=770" },
+  { style: "pro-kneepad", color: "black", waist: "32", length: "30L", swItem: "102871779",image:"https://thriveworkwear.com/cdn/shop/files/blackPROfront.png?v=1706181133&width=770" },
+  { style: "pro-kneepad", color: "black", waist: "32", length: "32L", swItem: "102871787",image:"https://thriveworkwear.com/cdn/shop/files/blackPROfront.png?v=1706181133&width=770" },
+  { style: "pro-kneepad", color: "black", waist: "32", length: "34L", swItem: "102871795",image:"https://thriveworkwear.com/cdn/shop/files/blackPROfront.png?v=1706181133&width=770" },
+  { style: "pro-kneepad", color: "black", waist: "32", length: "36L", swItem: "102871803",image:"https://thriveworkwear.com/cdn/shop/files/blackPROfront.png?v=1706181133&width=770" },
+  { style: "pro-kneepad", color: "black", waist: "34", length: "28L", swItem: "102871811",image:"https://thriveworkwear.com/cdn/shop/files/blackPROfront.png?v=1706181133&width=770" },
+  { style: "pro-kneepad", color: "black", waist: "34", length: "30L", swItem: "102871829",image:"https://thriveworkwear.com/cdn/shop/files/blackPROfront.png?v=1706181133&width=770" },
+  { style: "pro-kneepad", color: "black", waist: "34", length: "32L", swItem: "102871837",image:"https://thriveworkwear.com/cdn/shop/files/blackPROfront.png?v=1706181133&width=770" },
+  { style: "pro-kneepad", color: "black", waist: "34", length: "34L", swItem: "102871852",image:"https://thriveworkwear.com/cdn/shop/files/blackPROfront.png?v=1706181133&width=770" },
+  { style: "pro-kneepad", color: "black", waist: "34", length: "36L", swItem: "102871860",image:"https://thriveworkwear.com/cdn/shop/files/blackPROfront.png?v=1706181133&width=770" },
+  { style: "pro-kneepad", color: "black", waist: "36", length: "28L", swItem: "102871878",image:"https://thriveworkwear.com/cdn/shop/files/blackPROfront.png?v=1706181133&width=770" },
+  { style: "pro-kneepad", color: "black", waist: "36", length: "30L", swItem: "102871886",image:"https://thriveworkwear.com/cdn/shop/files/blackPROfront.png?v=1706181133&width=770" },
+  { style: "pro-kneepad", color: "black", waist: "36", length: "32L", swItem: "102871894",image:"https://thriveworkwear.com/cdn/shop/files/blackPROfront.png?v=1706181133&width=770" },
+  { style: "pro-kneepad", color: "black", waist: "36", length: "34L", swItem: "102871902",image:"https://thriveworkwear.com/cdn/shop/files/blackPROfront.png?v=1706181133&width=770" },
+  { style: "pro-kneepad", color: "black", waist: "36", length: "36L", swItem: "102871910",image:"https://thriveworkwear.com/cdn/shop/files/blackPROfront.png?v=1706181133&width=770" },
+  { style: "pro-kneepad", color: "black", waist: "38", length: "28L", swItem: "102871928",image:"https://thriveworkwear.com/cdn/shop/files/blackPROfront.png?v=1706181133&width=770" },
+  { style: "pro-kneepad", color: "black", waist: "38", length: "30L", swItem: "102871936",image:"https://thriveworkwear.com/cdn/shop/files/blackPROfront.png?v=1706181133&width=770" },
+  { style: "pro-kneepad", color: "black", waist: "38", length: "32L", swItem: "102871944",image:"https://thriveworkwear.com/cdn/shop/files/blackPROfront.png?v=1706181133&width=770" },
+  { style: "pro-kneepad", color: "black", waist: "38", length: "34L", swItem: "102871969",image:"https://thriveworkwear.com/cdn/shop/files/blackPROfront.png?v=1706181133&width=770" },
+  { style: "pro-kneepad", color: "black", waist: "38", length: "36L", swItem: "102871977",image:"https://thriveworkwear.com/cdn/shop/files/blackPROfront.png?v=1706181133&width=770" },
+  { style: "pro-kneepad", color: "black", waist: "40", length: "30L", swItem: "102871985",image:"https://thriveworkwear.com/cdn/shop/files/blackPROfront.png?v=1706181133&width=770" },
+  { style: "pro-kneepad", color: "black", waist: "40", length: "32L", swItem: "102871993",image:"https://thriveworkwear.com/cdn/shop/files/blackPROfront.png?v=1706181133&width=770" },
+  { style: "pro-kneepad", color: "black", waist: "40", length: "34L", swItem: "102872009",image:"https://thriveworkwear.com/cdn/shop/files/blackPROfront.png?v=1706181133&width=770" },
+
+  // PRO Navy Kneepad Pants (Men's)
+  { style: "pro-kneepad", color: "navy", waist: "30", length: "30L", swItem: "102870706",image:"https://thriveworkwear.com/cdn/shop/files/navyPROfront_navy.png?v=1692040820&width=770" },
+  { style: "pro-kneepad", color: "navy", waist: "30", length: "32L", swItem: "102871621",image:"https://thriveworkwear.com/cdn/shop/files/navyPROfront_navy.png?v=1692040820&width=770" },
+  { style: "pro-kneepad", color: "navy", waist: "30", length: "34L", swItem: "102871738",image:"https://thriveworkwear.com/cdn/shop/files/navyPROfront_navy.png?v=1692040820&width=770" },
+  { style: "pro-kneepad", color: "navy", waist: "30", length: "36L", swItem: "102871845",image:"https://thriveworkwear.com/cdn/shop/files/navyPROfront_navy.png?v=1692040820&width=770" },
+  { style: "pro-kneepad", color: "navy", waist: "32", length: "28L", swItem: "102871951",image:"https://thriveworkwear.com/cdn/shop/files/navyPROfront_navy.png?v=1692040820&width=770" },
+  { style: "pro-kneepad", color: "navy", waist: "32", length: "30L", swItem: "102872066",image:"https://thriveworkwear.com/cdn/shop/files/navyPROfront_navy.png?v=1692040820&width=770" },
+  { style: "pro-kneepad", color: "navy", waist: "32", length: "32L", swItem: "102872173",image:"https://thriveworkwear.com/cdn/shop/files/navyPROfront_navy.png?v=1692040820&width=770" },
+  { style: "pro-kneepad", color: "navy", waist: "32", length: "34L", swItem: "102872280",image:"https://thriveworkwear.com/cdn/shop/files/navyPROfront_navy.png?v=1692040820&width=770" },
+  { style: "pro-kneepad", color: "navy", waist: "32", length: "36L", swItem: "102872397",image:"https://thriveworkwear.com/cdn/shop/files/navyPROfront_navy.png?v=1692040820&width=770" },
+  { style: "pro-kneepad", color: "navy", waist: "34", length: "28L", swItem: "102870714",image:"https://thriveworkwear.com/cdn/shop/files/navyPROfront_navy.png?v=1692040820&width=770" },
+  { style: "pro-kneepad", color: "navy", waist: "34", length: "30L", swItem: "102870821",image:"https://thriveworkwear.com/cdn/shop/files/navyPROfront_navy.png?v=1692040820&width=770" },
+  { style: "pro-kneepad", color: "navy", waist: "34", length: "32L", swItem: "102870938",image:"https://thriveworkwear.com/cdn/shop/files/navyPROfront_navy.png?v=1692040820&width=770" },
+  { style: "pro-kneepad", color: "navy", waist: "34", length: "34L", swItem: "102871043",image:"https://thriveworkwear.com/cdn/shop/files/navyPROfront_navy.png?v=1692040820&width=770" },
+  { style: "pro-kneepad", color: "navy", waist: "34", length: "36L", swItem: "102871159",image:"https://thriveworkwear.com/cdn/shop/files/navyPROfront_navy.png?v=1692040820&width=770" },
+  { style: "pro-kneepad", color: "navy", waist: "36", length: "28L", swItem: "102871266",image:"https://thriveworkwear.com/cdn/shop/files/navyPROfront_navy.png?v=1692040820&width=770" },
+  { style: "pro-kneepad", color: "navy", waist: "36", length: "30L", swItem: "102871373",image:"https://thriveworkwear.com/cdn/shop/files/navyPROfront_navy.png?v=1692040820&width=770" },
+  { style: "pro-kneepad", color: "navy", waist: "36", length: "32L", swItem: "102871480",image:"https://thriveworkwear.com/cdn/shop/files/navyPROfront_navy.png?v=1692040820&width=770" },
+  { style: "pro-kneepad", color: "navy", waist: "36", length: "34L", swItem: "102871597",image:"https://thriveworkwear.com/cdn/shop/files/navyPROfront_navy.png?v=1692040820&width=770" },
+  { style: "pro-kneepad", color: "navy", waist: "36", length: "36L", swItem: "102871613",image:"https://thriveworkwear.com/cdn/shop/files/navyPROfront_navy.png?v=1692040820&width=770" },
+  { style: "pro-kneepad", color: "navy", waist: "38", length: "28L", swItem: "102871639",image:"https://thriveworkwear.com/cdn/shop/files/navyPROfront_navy.png?v=1692040820&width=770" },
+  { style: "pro-kneepad", color: "navy", waist: "38", length: "30L", swItem: "102871647",image:"https://thriveworkwear.com/cdn/shop/files/navyPROfront_navy.png?v=1692040820&width=770" },
+  { style: "pro-kneepad", color: "navy", waist: "38", length: "32L", swItem: "102871654",image:"https://thriveworkwear.com/cdn/shop/files/navyPROfront_navy.png?v=1692040820&width=770" },
+  { style: "pro-kneepad", color: "navy", waist: "38", length: "34L", swItem: "102871662",image:"https://thriveworkwear.com/cdn/shop/files/navyPROfront_navy.png?v=1692040820&width=770" },
+  { style: "pro-kneepad", color: "navy", waist: "38", length: "36L", swItem: "102871670",image:"https://thriveworkwear.com/cdn/shop/files/navyPROfront_navy.png?v=1692040820&width=770" },
+  { style: "pro-kneepad", color: "navy", waist: "40", length: "30L", swItem: "102871688",image:"https://thriveworkwear.com/cdn/shop/files/navyPROfront_navy.png?v=1692040820&width=770" },
+  { style: "pro-kneepad", color: "navy", waist: "40", length: "32L", swItem: "102871696",image:"https://thriveworkwear.com/cdn/shop/files/navyPROfront_navy.png?v=1692040820&width=770" },
+  { style: "pro-kneepad", color: "navy", waist: "40", length: "34L", swItem: "102871704",image:"https://thriveworkwear.com/cdn/shop/files/navyPROfront_navy.png?v=1692040820&width=770" },
+
+  // PRO Rust Kneepad Pants (Men's)
+  { style: "pro-kneepad", color: "rust", waist: "30", length: "30L", swItem: "102872017", image:"https://thriveworkwear.com/cdn/shop/files/rustPROknees3_rust.png?v=1692130729&width=770" },
+  { style: "pro-kneepad", color: "rust", waist: "30", length: "32L", swItem: "102872025", image:"https://thriveworkwear.com/cdn/shop/files/rustPROknees3_rust.png?v=1692130729&width=770" },
+  { style: "pro-kneepad", color: "rust", waist: "30", length: "34L", swItem: "102872033", image:"https://thriveworkwear.com/cdn/shop/files/rustPROknees3_rust.png?v=1692130729&width=770" },
+  { style: "pro-kneepad", color: "rust", waist: "30", length: "36L", swItem: "102872041", image:"https://thriveworkwear.com/cdn/shop/files/rustPROknees3_rust.png?v=1692130729&width=770" },
+  { style: "pro-kneepad", color: "rust", waist: "32", length: "28L", swItem: "102872058", image:"https://thriveworkwear.com/cdn/shop/files/rustPROknees3_rust.png?v=1692130729&width=770" },
+  { style: "pro-kneepad", color: "rust", waist: "32", length: "30L", swItem: "102872074", image:"https://thriveworkwear.com/cdn/shop/files/rustPROknees3_rust.png?v=1692130729&width=770" },
+  { style: "pro-kneepad", color: "rust", waist: "32", length: "32L", swItem: "102872082", image:"https://thriveworkwear.com/cdn/shop/files/rustPROknees3_rust.png?v=1692130729&width=770" },
+  { style: "pro-kneepad", color: "rust", waist: "32", length: "34L", swItem: "102872090", image:"https://thriveworkwear.com/cdn/shop/files/rustPROknees3_rust.png?v=1692130729&width=770" },
+  { style: "pro-kneepad", color: "rust", waist: "32", length: "36L", swItem: "102872108", image:"https://thriveworkwear.com/cdn/shop/files/rustPROknees3_rust.png?v=1692130729&width=770" },
+  { style: "pro-kneepad", color: "rust", waist: "34", length: "28L", swItem: "102872116", image:"https://thriveworkwear.com/cdn/shop/files/rustPROknees3_rust.png?v=1692130729&width=770" },
+  { style: "pro-kneepad", color: "rust", waist: "34", length: "30L", swItem: "102872124", image:"https://thriveworkwear.com/cdn/shop/files/rustPROknees3_rust.png?v=1692130729&width=770" },
+  { style: "pro-kneepad", color: "rust", waist: "34", length: "32L", swItem: "102872132", image:"https://thriveworkwear.com/cdn/shop/files/rustPROknees3_rust.png?v=1692130729&width=770" },
+  { style: "pro-kneepad", color: "rust", waist: "34", length: "34L", swItem: "102872140", image:"https://thriveworkwear.com/cdn/shop/files/rustPROknees3_rust.png?v=1692130729&width=770" },
+  { style: "pro-kneepad", color: "rust", waist: "34", length: "36L", swItem: "102872157", image:"https://thriveworkwear.com/cdn/shop/files/rustPROknees3_rust.png?v=1692130729&width=770" },
+  { style: "pro-kneepad", color: "rust", waist: "36", length: "28L", swItem: "102872165", image:"https://thriveworkwear.com/cdn/shop/files/rustPROknees3_rust.png?v=1692130729&width=770" },
+  { style: "pro-kneepad", color: "rust", waist: "36", length: "30L", swItem: "102872181", image:"https://thriveworkwear.com/cdn/shop/files/rustPROknees3_rust.png?v=1692130729&width=770" },
+  { style: "pro-kneepad", color: "rust", waist: "36", length: "32L", swItem: "102872199", image:"https://thriveworkwear.com/cdn/shop/files/rustPROknees3_rust.png?v=1692130729&width=770" },
+  { style: "pro-kneepad", color: "rust", waist: "36", length: "34L", swItem: "102872207", image:"https://thriveworkwear.com/cdn/shop/files/rustPROknees3_rust.png?v=1692130729&width=770" },
+  { style: "pro-kneepad", color: "rust", waist: "36", length: "36L", swItem: "102872215", image:"https://thriveworkwear.com/cdn/shop/files/rustPROknees3_rust.png?v=1692130729&width=770" },
+  { style: "pro-kneepad", color: "rust", waist: "38", length: "28L", swItem: "102872223", image:"https://thriveworkwear.com/cdn/shop/files/rustPROknees3_rust.png?v=1692130729&width=770" },
+  { style: "pro-kneepad", color: "rust", waist: "38", length: "30L", swItem: "102872231", image:"https://thriveworkwear.com/cdn/shop/files/rustPROknees3_rust.png?v=1692130729&width=770" },
+  { style: "pro-kneepad", color: "rust", waist: "38", length: "32L", swItem: "102872249", image:"https://thriveworkwear.com/cdn/shop/files/rustPROknees3_rust.png?v=1692130729&width=770" },
+  { style: "pro-kneepad", color: "rust", waist: "38", length: "34L", swItem: "102872256", image:"https://thriveworkwear.com/cdn/shop/files/rustPROknees3_rust.png?v=1692130729&width=770" },
+  { style: "pro-kneepad", color: "rust", waist: "38", length: "36L", swItem: "102872264", image:"https://thriveworkwear.com/cdn/shop/files/rustPROknees3_rust.png?v=1692130729&width=770" },
+  { style: "pro-kneepad", color: "rust", waist: "40", length: "30L", swItem: "102872272", image:"https://thriveworkwear.com/cdn/shop/files/rustPROknees3_rust.png?v=1692130729&width=770" },
+  { style: "pro-kneepad", color: "rust", waist: "40", length: "32L", swItem: "102872298", image:"https://thriveworkwear.com/cdn/shop/files/rustPROknees3_rust.png?v=1692130729&width=770" },
+  { style: "pro-kneepad", color: "rust", waist: "40", length: "34L", swItem: "102872306", image:"https://thriveworkwear.com/cdn/shop/files/rustPROknees3_rust.png?v=1692130729&width=770" },
+
+  // PRO Slate Kneepad Pants (Men's)
+  { style: "pro-kneepad", color: "slate", waist: "30", length: "28L", swItem: "103221792",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "30", length: "30L", swItem: "102517000",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "30", length: "32L", swItem: "103221800",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "30", length: "34L", swItem: "103221818",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "30", length: "36L", swItem: "103221826",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "32", length: "28L", swItem: "103221834",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "32", length: "30L", swItem: "102517018",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "32", length: "32L", swItem: "102517026",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "32", length: "34L", swItem: "103221842",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "32", length: "36L", swItem: "103221859",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "34", length: "28L", swItem: "103221867",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "34", length: "30L", swItem: "102517034",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "34", length: "32L", swItem: "102517042",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "34", length: "34L", swItem: "102517059",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "34", length: "36L", swItem: "103221875",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "36", length: "28L", swItem: "103221891",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "36", length: "30L", swItem: "102517067",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "36", length: "32L", swItem: "102517075",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "36", length: "34L", swItem: "103221909",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "36", length: "36L", swItem: "103221917",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "38", length: "28L", swItem: "103221925",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "38", length: "30L", swItem: "102517091",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "38", length: "32L", swItem: "102517109",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "38", length: "34L", swItem: "103221933",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "38", length: "36L", swItem: "103221941",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "40", length: "28L", swItem: "103221958",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "40", length: "30L", swItem: "103221966",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "40", length: "32L", swItem: "103221974",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "40", length: "34L", swItem: "103221982",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "40", length: "36L", swItem: "103222006",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "42", length: "28L", swItem: "103222014",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "42", length: "30L", swItem: "103222022",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "42", length: "32L", swItem: "103222030",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "42", length: "34L", swItem: "103222048",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "42", length: "36L", swItem: "103222055",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "44", length: "28L", swItem: "103222063",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "44", length: "30L", swItem: "103222071",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "44", length: "32L", swItem: "103222089",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "44", length: "34L", swItem: "103222097",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+  { style: "pro-kneepad", color: "slate", waist: "44", length: "36L", swItem: "103222113",image:"https://thriveworkwear.com/cdn/shop/files/slateprofront.png?v=1722525901&width=770" },
+
+  // PRO Tumbleweed Kneepad Pants (Men's)
+  { style: "pro-kneepad", color: "tumbleweed", waist: "30", length: "28L", swItem: "103222121",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "30", length: "30L", swItem: "103222139",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "30", length: "32L", swItem: "103222147",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "30", length: "34L", swItem: "103222154",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "30", length: "36L", swItem: "103222162",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "32", length: "28L", swItem: "103222170",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "32", length: "30L", swItem: "103222188",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "32", length: "32L", swItem: "103222196",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "32", length: "34L", swItem: "103222204",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "32", length: "36L", swItem: "103222220",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "34", length: "28L", swItem: "103222238",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "34", length: "30L", swItem: "103222246",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "34", length: "32L", swItem: "103222253",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "34", length: "34L", swItem: "103222261",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "34", length: "36L", swItem: "103222279",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "36", length: "28L", swItem: "103222287",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "36", length: "30L", swItem: "103222295",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "36", length: "32L", swItem: "103222303",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "36", length: "34L", swItem: "103222311",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "36", length: "36L", swItem: "103222337",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "38", length: "28L", swItem: "103222345",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "38", length: "30L", swItem: "103222352",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "38", length: "32L", swItem: "103222360",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "38", length: "34L", swItem: "103222378",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "38", length: "36L", swItem: "103222386",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "40", length: "28L", swItem: "103222394",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "40", length: "30L", swItem: "103222402",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "40", length: "32L", swItem: "103222410",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "40", length: "34L", swItem: "103222428",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "40", length: "36L", swItem: "103222444",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "42", length: "28L", swItem: "103222451",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "42", length: "30L", swItem: "103222469",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "42", length: "32L", swItem: "103222477",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "42", length: "34L", swItem: "103222485",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "42", length: "36L", swItem: "103222493",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "44", length: "28L", swItem: "103222501",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "44", length: "30L", swItem: "103222519",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "44", length: "32L", swItem: "103222527",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "44", length: "34L", swItem: "103222535",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+  { style: "pro-kneepad", color: "tumbleweed", waist: "44", length: "36L", swItem: "103222550",image:"https://thriveworkwear.com/cdn/shop/files/tumbleprofront.png?v=1722530074&width=770" },
+
+  // SHORTS Black (Men's)
+  { style: "shorts-men", color: "black", waist: "30", length: "10", swItem: "102871472",image:"https://thriveworkwear.com/cdn/shop/files/blackSHORTSfront_7b65e038-bc8b-467a-af74-62c0fabf6f67.png?v=1692127717&width=770" },
+  { style: "shorts-men", color: "black", waist: "32", length: "10", swItem: "102871498",image:"https://thriveworkwear.com/cdn/shop/files/blackSHORTSfront_7b65e038-bc8b-467a-af74-62c0fabf6f67.png?v=1692127717&width=770" },
+  { style: "shorts-men", color: "black", waist: "34", length: "10", swItem: "102871506",image:"https://thriveworkwear.com/cdn/shop/files/blackSHORTSfront_7b65e038-bc8b-467a-af74-62c0fabf6f67.png?v=1692127717&width=770" },
+  { style: "shorts-men", color: "black", waist: "36", length: "10", swItem: "102871514",image:"https://thriveworkwear.com/cdn/shop/files/blackSHORTSfront_7b65e038-bc8b-467a-af74-62c0fabf6f67.png?v=1692127717&width=770" },
+  { style: "shorts-men", color: "black", waist: "38", length: "10", swItem: "102871522",image:"https://thriveworkwear.com/cdn/shop/files/blackSHORTSfront_7b65e038-bc8b-467a-af74-62c0fabf6f67.png?v=1692127717&width=770" },
+  { style: "shorts-men", color: "black", waist: "40", length: "10", swItem: "102871530",image:"https://thriveworkwear.com/cdn/shop/files/blackSHORTSfront_7b65e038-bc8b-467a-af74-62c0fabf6f67.png?v=1692127717&width=770" },
+
+  // SHORTS Navy (Men's)
+  { style: "shorts-men", color: "navy", waist: "30", length: "10", swItem: "102871415",image:"https://thriveworkwear.com/cdn/shop/files/navySHORTSfront_navy.png?v=1692127717&width=770" },
+  { style: "shorts-men", color: "navy", waist: "32", length: "10", swItem: "102871423",image:"https://thriveworkwear.com/cdn/shop/files/navySHORTSfront_navy.png?v=1692127717&width=770" },
+  { style: "shorts-men", color: "navy", waist: "34", length: "10", swItem: "102871431",image:"https://thriveworkwear.com/cdn/shop/files/navySHORTSfront_navy.png?v=1692127717&width=770" },
+  { style: "shorts-men", color: "navy", waist: "36", length: "10", swItem: "102871449",image:"https://thriveworkwear.com/cdn/shop/files/navySHORTSfront_navy.png?v=1692127717&width=770" },
+  { style: "shorts-men", color: "navy", waist: "38", length: "10", swItem: "102871456",image:"https://thriveworkwear.com/cdn/shop/files/navySHORTSfront_navy.png?v=1692127717&width=770" },
+  { style: "shorts-men", color: "navy", waist: "40", length: "10", swItem: "102871464",image:"https://thriveworkwear.com/cdn/shop/files/navySHORTSfront_navy.png?v=1692127717&width=770" },
+
+  // SHORTS Rust (Men's)
+  { style: "shorts-men", color: "rust", waist: "30", length: "10", swItem: "102871548",image:"https://thriveworkwear.com/cdn/shop/files/rustSHORTSfront_rust.png?v=1692127717&width=770" },
+  { style: "shorts-men", color: "rust", waist: "32", length: "10", swItem: "102871555",image:"https://thriveworkwear.com/cdn/shop/files/rustSHORTSfront_rust.png?v=1692127717&width=770" },
+  { style: "shorts-men", color: "rust", waist: "34", length: "10", swItem: "102871563",image:"https://thriveworkwear.com/cdn/shop/files/rustSHORTSfront_rust.png?v=1692127717&width=770" },
+  { style: "shorts-men", color: "rust", waist: "36", length: "10", swItem: "102871571",image:"https://thriveworkwear.com/cdn/shop/files/rustSHORTSfront_rust.png?v=1692127717&width=770" },
+  { style: "shorts-men", color: "rust", waist: "38", length: "10", swItem: "102871589",image:"https://thriveworkwear.com/cdn/shop/files/rustSHORTSfront_rust.png?v=1692127717&width=770" },
+  { style: "shorts-men", color: "rust", waist: "40", length: "10", swItem: "102871605",image:"https://thriveworkwear.com/cdn/shop/files/rustSHORTSfront_rust.png?v=1692127717&width=770" },
+
+  // SHORTS Slate (Men's)
+  { style: "shorts-men", color: "slate", waist: "30", length: "11", swItem: "103222568",image:"https://thriveworkwear.com/cdn/shop/files/slateshort.jpg?v=1718211215&width=770" },
+  { style: "shorts-men", color: "slate", waist: "32", length: "11", swItem: "103222576",image:"https://thriveworkwear.com/cdn/shop/files/slateshort.jpg?v=1718211215&width=770" },
+  { style: "shorts-men", color: "slate", waist: "34", length: "11", swItem: "103222584",image:"https://thriveworkwear.com/cdn/shop/files/slateshort.jpg?v=1718211215&width=770" },
+  { style: "shorts-men", color: "slate", waist: "36", length: "11", swItem: "103222592",image:"https://thriveworkwear.com/cdn/shop/files/slateshort.jpg?v=1718211215&width=770" },
+  { style: "shorts-men", color: "slate", waist: "38", length: "11", swItem: "103222600",image:"https://thriveworkwear.com/cdn/shop/files/slateshort.jpg?v=1718211215&width=770" },
+  { style: "shorts-men", color: "slate", waist: "40", length: "11", swItem: "103222618",image:"https://thriveworkwear.com/cdn/shop/files/slateshort.jpg?v=1718211215&width=770" },
+  { style: "shorts-men", color: "slate", waist: "42", length: "11", swItem: "103222626",image:"https://thriveworkwear.com/cdn/shop/files/slateshort.jpg?v=1718211215&width=770" },
+  { style: "shorts-men", color: "slate", waist: "44", length: "11", swItem: "103222634",image:"https://thriveworkwear.com/cdn/shop/files/slateshort.jpg?v=1718211215&width=770" },
+
+  // SHORTS Tumbleweed (Men's)
+  { style: "shorts-men", color: "tumbleweed", waist: "30", length: "11", swItem: "103222642",image:"https://thriveworkwear.com/cdn/shop/files/shortstumblefront.png?v=1722532357&width=770" },
+  { style: "shorts-men", color: "tumbleweed", waist: "32", length: "11", swItem: "103221016",image:"https://thriveworkwear.com/cdn/shop/files/shortstumblefront.png?v=1722532357&width=770" },
+  { style: "shorts-men", color: "tumbleweed", waist: "34", length: "11", swItem: "103221024",image:"https://thriveworkwear.com/cdn/shop/files/shortstumblefront.png?v=1722532357&width=770" },
+  { style: "shorts-men", color: "tumbleweed", waist: "36", length: "11", swItem: "103221032",image:"https://thriveworkwear.com/cdn/shop/files/shortstumblefront.png?v=1722532357&width=770" },
+  { style: "shorts-men", color: "tumbleweed", waist: "38", length: "11", swItem: "103221040",image:"https://thriveworkwear.com/cdn/shop/files/shortstumblefront.png?v=1722532357&width=770" },
+  { style: "shorts-men", color: "tumbleweed", waist: "40", length: "11", swItem: "103221057",image:"https://thriveworkwear.com/cdn/shop/files/shortstumblefront.png?v=1722532357&width=770" },
+  { style: "shorts-men", color: "tumbleweed", waist: "42", length: "11", swItem: "103221065",image:"https://thriveworkwear.com/cdn/shop/files/shortstumblefront.png?v=1722532357&width=770" },
+  { style: "shorts-men", color: "tumbleweed", waist: "44", length: "11", swItem: "103221073",image:"https://thriveworkwear.com/cdn/shop/files/shortstumblefront.png?v=1722532357&width=770" },
+
+  // WOMEN'S CORE White Pants
+  { style: "core-women", color: "white", waist: "000", length: "28L", swItem: "103391330",image:"https://thriveworkwear.com/cdn/shop/files/womens-thrive-15.png?v=1758120510&width=770" },
+  { style: "core-women", color: "white", waist: "00", length: "28L", swItem: "103391447",image:"https://thriveworkwear.com/cdn/shop/files/womens-thrive-15.png?v=1758120510&width=770" },
+  { style: "core-women", color: "white", waist: "00", length: "30L", swItem: "103391553",image:"https://thriveworkwear.com/cdn/shop/files/womens-thrive-15.png?v=1758120510&width=770" },
+  { style: "core-women", color: "white", waist: "0", length: "28L", swItem: "103391579",image:"https://thriveworkwear.com/cdn/shop/files/womens-thrive-15.png?v=1758120510&width=770" },
+  { style: "core-women", color: "white", waist: "0", length: "30L", swItem: "103391587",image:"https://thriveworkwear.com/cdn/shop/files/womens-thrive-15.png?v=1758120510&width=770" },
+  { style: "core-women", color: "white", waist: "0", length: "32L", swItem: "103391595",image:"https://thriveworkwear.com/cdn/shop/files/womens-thrive-15.png?v=1758120510&width=770" },
+  { style: "core-women", color: "white", waist: "2", length: "28L", swItem: "103391603",image:"https://thriveworkwear.com/cdn/shop/files/womens-thrive-15.png?v=1758120510&width=770" },
+  { style: "core-women", color: "white", waist: "2", length: "30L", swItem: "103391611",image:"https://thriveworkwear.com/cdn/shop/files/womens-thrive-15.png?v=1758120510&width=770" },
+  { style: "core-women", color: "white", waist: "2", length: "32L", swItem: "103391629",image:"https://thriveworkwear.com/cdn/shop/files/womens-thrive-15.png?v=1758120510&width=770" },
+  { style: "core-women", color: "white", waist: "4", length: "28L", swItem: "103391348",image:"https://thriveworkwear.com/cdn/shop/files/womens-thrive-15.png?v=1758120510&width=770" },
+  { style: "core-women", color: "white", waist: "4", length: "30L", swItem: "103391355",image:"https://thriveworkwear.com/cdn/shop/files/womens-thrive-15.png?v=1758120510&width=770" },
+  { style: "core-women", color: "white", waist: "4", length: "32L", swItem: "103391363",image:"https://thriveworkwear.com/cdn/shop/files/womens-thrive-15.png?v=1758120510&width=770" },
+  { style: "core-women", color: "white", waist: "6", length: "28L", swItem: "103391371",image:"https://thriveworkwear.com/cdn/shop/files/womens-thrive-15.png?v=1758120510&width=770" },
+  { style: "core-women", color: "white", waist: "6", length: "30L", swItem: "103391389",image:"https://thriveworkwear.com/cdn/shop/files/womens-thrive-15.png?v=1758120510&width=770" },
+  { style: "core-women", color: "white", waist: "6", length: "32L", swItem: "103391397",image:"https://thriveworkwear.com/cdn/shop/files/womens-thrive-15.png?v=1758120510&width=770" },
+  { style: "core-women", color: "white", waist: "8", length: "28L", swItem: "103391405",image:"https://thriveworkwear.com/cdn/shop/files/womens-thrive-15.png?v=1758120510&width=770" },
+  { style: "core-women", color: "white", waist: "8", length: "30L", swItem: "103391413",image:"https://thriveworkwear.com/cdn/shop/files/womens-thrive-15.png?v=1758120510&width=770" },
+  { style: "core-women", color: "white", waist: "8", length: "32L", swItem: "103391421",image:"https://thriveworkwear.com/cdn/shop/files/womens-thrive-15.png?v=1758120510&width=770" },
+  { style: "core-women", color: "white", waist: "10", length: "28L", swItem: "103391439",image:"https://thriveworkwear.com/cdn/shop/files/womens-thrive-15.png?v=1758120510&width=770" },
+  { style: "core-women", color: "white", waist: "10", length: "30L", swItem: "103391454",image:"https://thriveworkwear.com/cdn/shop/files/womens-thrive-15.png?v=1758120510&width=770" },
+  { style: "core-women", color: "white", waist: "10", length: "32L", swItem: "103391462",image:"https://thriveworkwear.com/cdn/shop/files/womens-thrive-15.png?v=1758120510&width=770" },
+  { style: "core-women", color: "white", waist: "12", length: "28L", swItem: "103391470",image:"https://thriveworkwear.com/cdn/shop/files/womens-thrive-15.png?v=1758120510&width=770" },
+  { style: "core-women", color: "white", waist: "12", length: "30L", swItem: "103391488",image:"https://thriveworkwear.com/cdn/shop/files/womens-thrive-15.png?v=1758120510&width=770" },
+  { style: "core-women", color: "white", waist: "12", length: "32L", swItem: "103391496",image:"https://thriveworkwear.com/cdn/shop/files/womens-thrive-15.png?v=1758120510&width=770" },
+  { style: "core-women", color: "white", waist: "14", length: "28L", swItem: "103391504",image:"https://thriveworkwear.com/cdn/shop/files/womens-thrive-15.png?v=1758120510&width=770" },
+  { style: "core-women", color: "white", waist: "14", length: "30L", swItem: "103391512",image:"https://thriveworkwear.com/cdn/shop/files/womens-thrive-15.png?v=1758120510&width=770" },
+  { style: "core-women", color: "white", waist: "14", length: "32L", swItem: "103391520",image:"https://thriveworkwear.com/cdn/shop/files/womens-thrive-15.png?v=1758120510&width=770" },
+  { style: "core-women", color: "white", waist: "16", length: "28L", swItem: "103391538",image:"https://thriveworkwear.com/cdn/shop/files/womens-thrive-15.png?v=1758120510&width=770" },
+  { style: "core-women", color: "white", waist: "16", length: "30L", swItem: "103391546",image:"https://thriveworkwear.com/cdn/shop/files/womens-thrive-15.png?v=1758120510&width=770" },
+  { style: "core-women", color: "white", waist: "16", length: "32L", swItem: "103391561",image:"https://thriveworkwear.com/cdn/shop/files/womens-thrive-15.png?v=1758120510&width=770" }
+];
+
+const translations = {
+  en: {
+    colors: {
+      white: "WHITE",
+      black: "BLACK",
+      navy: "NAVY",
+      rust: "RUST",
+      slate: "SLATE",
+      tumbleweed: "TUMBLEWEED",
+    },
+    titles: {
+      styleLabel: "Style",
+      waistLabel: "Waist Size",
+      lengthLabel: "Length Size",
+      itemNumberLabel: "Item Number",
+      messageLabel: "Please show this information to your SHERWIN-WILLIAMS store associate for ordering.",
+      thankYouLabel: "Thank You!",
+      style: "What STYLE of workwear?",
+      color: "What COLOR?",
+      waist: "What WAIST size?",
+      length: "What LENGTH size?"
+    },
+    buttons: {
+      back: "Back",
+      next: "Next"
+    }
+  },
+  es: {
+    colors: {
+      white: "BLANCO",
+      black: "NEGRO",
+      navy: "AZUL MARINO",
+      rust: "ÓXIDO",
+      slate: "GRIS PIZARRA",
+      tumbleweed: "PAJA",
+    },
+    titles: {
+      styleLabel: "Estilo",
+      waistLabel: "Cintura",
+      lengthLabel: "Largo",
+      itemNumberLabel: "Número de Artículo",
+      messageLabel: "Por favor, muestra esta información al asociado de la tienda SHERWIN-WILLIAMS para realizar el pedido.",
+      thankYouLabel: "¡Gracias",
+      style: "¿Qué ESTILO de ropa de trabajo?",
+      color: "¿Qué COLOR?",
+      waist: "¿Qué TALLA DE CINTURA?",
+      length: "¿Qué LARGO?"
+    },
+    buttons: {
+      back: "Atrás",
+      next: "Siguiente"
+    }
+  },
+};
+
+const styles = [
+  { value: "core-basic", en: "CORE- Basic Pants", es: "CORE- Pantalones Básicos" },
+  { value: "pro-kneepad", en: "PRO- Knee Pad Pants", es: "PRO- Pantalones con Rodillera" },
+  { value: "shorts-men", en: "SHORTS- Men's", es: "SHORTS- Hombre" },
+  { value: "core-women", en: "WOMEN'S CORE- Pants", es: "CORE- Pantalones Mujer" },
+];
+
+let currentStep = 1;
+let lang = 'en';
+const selection = { style: '', color: '', waist: '', length: '' };
+
+function selectLanguage(language) {
+  lang = language;
+  selection.style = '';
+  selection.color = '';
+  selection.waist = '';
+  selection.length = '';
+  
+  showStep(2);
+  document.getElementById("step2-text").innerText = translations[lang].titles.style;
+  document.getElementById("step3-text").innerText = translations[lang].titles.color;
+  document.getElementById("step4-waist-text").innerText = translations[lang].titles.waist;
+  document.getElementById("step4-length-text").innerText = translations[lang].titles.length;
+  document.getElementById('summary-style-label').innerText = translations[lang].titles.styleLabel || 'Style';
+  document.getElementById('summary-waist-label').innerText = translations[lang].titles.waistLabel || 'Waist Size';
+  document.getElementById('summary-length-label').innerText = translations[lang].titles.lengthLabel || 'Length Size';
+  document.getElementById('item-number-label').innerText = translations[lang].titles.itemNumberLabel || 'Item Number';
+  document.getElementById('message-label').innerText = translations[lang].titles.messageLabel || 'testing';
+  document.getElementById('thank-you-label').innerText = translations[lang].titles.thankYouLabel || 'Thank You';
+  
+  document.querySelectorAll('[data-action]').forEach((el) => {
+    const action = el.getAttribute('data-action');
+    const span = el.querySelector('span');
+    if (span && translations[lang].buttons && translations[lang].buttons[action]) {
+      span.innerText = translations[lang].buttons[action];
+    }
+  });
+  renderStyleOptions();
+  updateNextButtonState();
+}
+
+function renderStyleOptions() {
+  const container = document.getElementById('style-options');
+  container.innerHTML = '';
+  const thumbnails = {
+    'core-basic': 'https://thriveworkwear.com/cdn/shop/files/rustCOREfront_rust.png?v=1692028882&width=770',
+    'pro-kneepad': 'https://thriveworkwear.com/cdn/shop/files/rustPROknees3_rust.png?v=1692130729&width=770',
+    'shorts-men': 'https://thriveworkwear.com/cdn/shop/files/rustSHORTSfront_rust.png?v=1692127717&width=770',
+    'core-women': 'https://resources.latinowebstudio.com/wp-content/uploads/2025/10/Womens-1.png'
+  };
+
+  styles.forEach(s => {
+    const btn = document.createElement('button');
+    btn.className = 'option-button';
+    btn.onclick = () => {
+      selection.style = s.value;
+      selection.color = '';
+      selection.waist = '';
+      selection.length = '';
+      highlightSelected(container, btn);
+      updateNextButtonState();
+      updateProgressSummary();
+    };
+
+    const img = document.createElement('img');
+    img.src = thumbnails[s.value];
+    img.style.minWidth = '60px';
+    img.style.width = '100%';
+    img.style.maxWidth = '120px';
+    img.style.height = '120px';
+    img.style.objectFit = 'contain';
+    img.style.marginBottom = '8px';
+
+    const label = document.createElement('div');
+    label.innerText = s[lang];
+
+    btn.appendChild(img);
+    btn.appendChild(label);
+    container.appendChild(btn);
+  });
+}
+
+function renderColorOptions() {
+  const container = document.getElementById('color-options');
+  container.innerHTML = '';
+  
+  if (!selection.style) return;
+  
+  const availableColors = [...new Set(
+    productData
+      .filter(p => p.style === selection.style)
+      .map(p => p.color)
+  )];
+  
+  availableColors.forEach(c => {
+    const btn = document.createElement('button');
+    btn.className = `option-button color-button color-${c}`;
+    btn.innerText = translations[lang].colors[c];
+    btn.onclick = () => {
+      selection.color = c;
+      selection.waist = '';
+      selection.length = '';
+      highlightSelected(container, btn);
+      updateNextButtonState();
+      updateProgressSummary();
+    };
+    container.appendChild(btn);
+  });
+}
+
+function renderWaistOptions() {
+  const container = document.getElementById('waist-options');
+  container.innerHTML = '';
+  
+  if (!selection.style || !selection.color) return;
+  
+  const availableWaists = [...new Set(
+    productData
+      .filter(p => p.style === selection.style && p.color === selection.color)
+      .map(p => p.waist)
+  )].sort((a, b) => {
+    const numA = parseInt(a) || 0;
+    const numB = parseInt(b) || 0;
+    return numA - numB;
+  });
+  
+  availableWaists.forEach(w => {
+    const btn = document.createElement('button');
+    btn.className = 'option-button';
+    btn.innerText = w;
+    btn.onclick = () => {
+      selection.waist = w;
+      selection.length = '';
+      highlightSelected(container, btn);
+      renderLengthOptions();
+      updateNextButtonState();
+      updateProgressSummary();
+    };
+    container.appendChild(btn);
+  });
+}
+
+function renderLengthOptions() {
+  const container = document.getElementById('length-options');
+  container.innerHTML = '';
+  
+  if (!selection.style || !selection.color || !selection.waist) return;
+  
+  const availableLengths = [...new Set(
+    productData
+      .filter(p => 
+        p.style === selection.style && 
+        p.color === selection.color && 
+        p.waist === selection.waist
+      )
+      .map(p => p.length)
+  )].sort();
+  
+  availableLengths.forEach(l => {
+    const btn = document.createElement('button');
+    btn.className = 'option-button';
+    btn.innerText = l;
+    btn.onclick = () => {
+      selection.length = l;
+      highlightSelected(container, btn);
+      updateNextButtonState();
+      updateProgressSummary();
+    };
+    container.appendChild(btn);
+  });
+}
+
+function highlightSelected(container, selectedBtn) {
+  const buttons = container.querySelectorAll('button');
+  buttons.forEach(b => b.classList.remove('selected'));
+  selectedBtn.classList.add('selected');
+}
+
+function showStep(stepNumber) {
+  document.querySelectorAll('.step').forEach((el, idx) => {
+    el.classList.toggle('active', idx === stepNumber - 1);
+  });
+  currentStep = stepNumber;
+  updateNextButtonState();
+  updateProgressSummary();
+  if (currentStep === 5) updateSummary();
+}
+
+function nextStep() {
+  if (currentStep < 5) {
+    showStep(currentStep + 1);
+    if (currentStep === 3) renderColorOptions();
+    else if (currentStep === 4) {
+      renderWaistOptions();
+      renderLengthOptions();
+    }
+  }
+}
+
+function prevStep() {
+  if (currentStep > 1) {
+    const targetStep = currentStep - 1;
+    
+    if (targetStep === 1) {
+      selection.style = '';
+      selection.color = '';
+      selection.waist = '';
+      selection.length = '';
+    } else if (targetStep === 2) {
+      selection.style = '';
+      selection.color = '';
+      selection.waist = '';
+      selection.length = '';
+    } else if (targetStep === 3) {
+      selection.color = '';
+      selection.waist = '';
+      selection.length = '';
+    } else if (targetStep === 4) {
+      selection.waist = '';
+      selection.length = '';
+    }
+    
+    currentStep--;
+    document.querySelectorAll('.step').forEach((el, idx) => {
+      el.classList.toggle('active', idx === currentStep - 1);
+    });
+    
+    if (currentStep === 2) renderStyleOptions();
+    else if (currentStep === 3) renderColorOptions();
+    else if (currentStep === 4) {
+      renderWaistOptions();
+      renderLengthOptions();
+    }
+    
+    updateNextButtonState();
+    updateProgressSummary();
+  }
+}
+
+function updateNextButtonState() {
+  const nextBtn = document.querySelector(`#step${currentStep} .button[data-action="next"]`);
+  if (!nextBtn) return;
+
+  let enabled = false;
+  if (currentStep === 2) enabled = !!selection.style;
+  else if (currentStep === 3) enabled = !!selection.color;
+  else if (currentStep === 4) enabled = !!selection.waist && !!selection.length;
+
+  nextBtn.disabled = !enabled;
+}
+
+function updateSummary() {
+  const match = productData.find(p =>
+    p.style === selection.style &&
+    p.color === selection.color &&
+    p.waist === selection.waist &&
+    p.length === selection.length
+  );
+
+  document.getElementById('summary-style').innerText = styles.find(s => s.value === selection.style)?.[lang] || selection.style;
+  document.getElementById('summary-color').innerText = translations[lang].colors[selection.color];
+  document.getElementById('summary-waist').innerText = selection.waist;
+  document.getElementById('summary-length').innerText = selection.length;
+  document.getElementById('summary-item').innerText = match ? match.swItem : 'ITEM NOT FOUND';
+
+  const previewImg = document.getElementById('preview-image');
+  if (match?.image) {
+    previewImg.src = match.image;
+    previewImg.style.display = 'block';
+    document.getElementById('image-fallback-text').style.display = 'none';
+  } else {
+    previewImg.style.display = 'none';
+    document.getElementById('image-fallback-text').style.display = 'block';
+    document.getElementById('image-fallback-text').innerText = 'ITEM NOT FOUND';
+  }
+}
+
+function updateProgressSummary() {
+  const summaryDiv = document.getElementById('progress-summary');
+  
+  if (currentStep < 3) {
+    summaryDiv.innerHTML = '';
+    return;
+  }
+  
+  let summaryParts = [];
+  
+  if (selection.style) {
+    const styleLabel = lang === 'en' ? 'Style' : 'Estilo';
+    const styleValue = styles.find(s => s.value === selection.style)?.[lang] || selection.style;
+    summaryParts.push(`<strong>${styleLabel}:</strong> ${styleValue}`);
+  }
+  
+  if (selection.color && currentStep >= 4) {
+    const colorLabel = lang === 'en' ? 'Color' : 'Color';
+    const colorValue = translations[lang].colors[selection.color];
+    summaryParts.push(`<strong>${colorLabel}:</strong> ${colorValue}`);
+  }
+  
+  if (selection.waist && currentStep >= 5) {
+    const waistLabel = lang === 'en' ? 'Waist' : 'Cintura';
+    summaryParts.push(`<strong>${waistLabel}:</strong> ${selection.waist}`);
+  }
+  
+  if (selection.length && currentStep >= 5) {
+    const lengthLabel = lang === 'en' ? 'Length' : 'Largo';
+    summaryParts.push(`<strong>${lengthLabel}:</strong> ${selection.length}`);
+  }
+  
+  summaryDiv.innerHTML = summaryParts.join(' | ');
+}
+  </script>
+</body>
+</html>
