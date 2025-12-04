@@ -1,6 +1,3 @@
-<meta property="og:image" content="https://cdn.shopify.com/s/files/1/0032/3043/3315/files/mobile-splash1.jpg?v=1761229916">
-
-
 <style>
     .jdgm-revs-tab-btn.btn { display: none; }
     div#shopify-section-sections--21122713944099__header { display: none; }
@@ -181,7 +178,7 @@
     
     #color-options .option-button.selected::after {
       content: "✓";
-      font-size: 16px;
+      font-size: 50px;
       font-weight: bold;
       color: #576658;
       color:red;
@@ -397,6 +394,15 @@
       color:green;
       font-weight: bold;
       margin-top: 5px;
+    }
+    @media only screen and (max-width:768px) {
+        .language-selection {
+            flex-wrap:wrap;
+        }
+        .language-selection div {
+            flex: auto;
+            width: 100%;
+        }
     }
   </style>
 
@@ -618,8 +624,9 @@ function updateAllTranslations() {
   document.getElementById('summary-waist-label').innerText = translations[lang].titles.waistLabel;
   document.getElementById('summary-length-label').innerText = translations[lang].titles.lengthLabel;
   document.getElementById('item-number-label').innerText = translations[lang].titles.itemNumberLabel;
-  document.getElementById('knee-pad-message').innerText = translations[lang].titles.kneePadMessageLabel;
+  // document.getElementById('knee-pad-message').innerText = translations[lang].titles.kneePadMessageLabel;
   document.getElementById('message-label').innerText = translations[lang].titles.messageLabel;
+  // document.getElementById('knee-pad-text').innerText = translations[lang].titles.kneePadMessageLabel;
   document.getElementById('thank-you-label').innerText = translations[lang].titles.thankYouLabel;
   
   document.querySelectorAll('[data-action]').forEach((el) => {

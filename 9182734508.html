@@ -1,5 +1,3 @@
-<meta property="og:image" content="https://cdn.shopify.com/s/files/1/0032/3043/3315/files/mobile-splash1.jpg?v=1761229916">
-
 <style>
     .jdgm-revs-tab-btn.btn { display: none; }
     div#shopify-section-sections--21122713944099__header { display: none; }
@@ -181,7 +179,7 @@
     
     #color-options .option-button.selected::after {
       content: "✓";
-      font-size: 16px;
+      font-size: 50px;
       font-weight: bold;
       color: red;
       position: absolute;
@@ -190,11 +188,11 @@
       transform: translate(50%, 0%);
     }
     
-    @media only screen and (min-width: 768px) {
+    /* @media only screen and (min-width: 768px) {
       #color-options .option-button.selected::after {
         font-size: 50px;
       }
-    }
+    } */
     
     .color-button { color: #fff; }
     .color-white,.color-white.selected { background: #fff; color: #000; border: 2px solid #232221; }
@@ -378,6 +376,15 @@
       background: #e8e8e8;
       box-shadow: none;
     }
+    @media only screen and (max-width:768px) {
+        .language-selection {
+            flex-wrap:wrap;
+        }
+        .language-selection div {
+            flex: auto;
+            width: 100%;
+        }
+    }
 </style>
 
 <div class="container">
@@ -483,7 +490,8 @@ const translations = {
       waistLabel: "Waist Size",
       lengthLabel: "Length Size",
       itemNumberLabel: "Item Number",
-      messageLabel: "Please contact us for ordering information.",
+      kneePadMessageLabel: "Knee Pad Inserts Required: 102516978",
+      messageLabel: "Please show this information to your HAJOCA store associate for ordering.",
       thankYouLabel: "Thank You!",
       style: "What STYLE?",
       color: "What COLOR?",
@@ -514,7 +522,8 @@ const translations = {
       waistLabel: "Cintura",
       lengthLabel: "Largo",
       itemNumberLabel: "Número de Artículo",
-      messageLabel: "Comuníquese con nosotros para obtener información sobre pedidos.",
+      kneePadMessageLabel: "Rodilleras Requeridas: 102516978",
+      messageLabel: "Por favor, muestra esta información al asociado de la tienda HAJOCA para realizar el pedido.",
       thankYouLabel: "¡Gracias",
       style: "¿Qué ESTILO?",
       color: "¿Qué COLOR?",
@@ -560,6 +569,7 @@ function updateAllTranslations() {
   document.getElementById('summary-length-label').innerText = translations[lang].titles.lengthLabel;
   document.getElementById('item-number-label').innerText = translations[lang].titles.itemNumberLabel;
   document.getElementById('message-label').innerText = translations[lang].titles.messageLabel;
+  document.getElementById('knee-pad-text').innerText = translations[lang].titles.kneePadMessageLabel;
   document.getElementById('thank-you-label').innerText = translations[lang].titles.thankYouLabel;
   
   document.querySelectorAll('[data-action]').forEach((el) => {
