@@ -4,6 +4,11 @@
     footer#footer { display: none; }
     
     * { box-sizing: border-box; }
+
+    :root {
+      --primary-color: #576658;
+      --secondary-color: #232221;
+    }
     
     body {
       font-family: Arial, sans-serif;
@@ -16,7 +21,7 @@
     
     .container {
       width: 100%;
-      max-width: 480px;
+      max-width: 510px;
       margin: 0 auto;
       padding: 0px 20px;
     }
@@ -67,7 +72,7 @@
     }
     
     .step { display: none; }
-    .step.active { display: block; }
+    /* .step.active { display: block; } */
     
     .button-row {
       display: flex;
@@ -86,7 +91,7 @@
     
     .button {
       flex: 1;
-      padding: 10px;
+      padding: 10px 25px;
       font-size: 14px;
       min-width: 150px;
       background: #576658;
@@ -367,11 +372,11 @@
       }
     }
 
-    .language-selection {
+    /* .language-selection {
       display: flex;
       justify-content: space-between;
       align-items: self-end;
-    }
+    } */
     .language-selection div{
       flex:1;
     }
@@ -395,15 +400,48 @@
       font-weight: bold;
       margin-top: 5px;
     }
-    @media only screen and (max-width:768px) {
+    .step.active { display: block; }
+    #step1.step.active { 
+      display: flex; 
+      align-items: center;
+    }
+    #step1 .language-selection {
+      display: block;
+      padding-left:15px;
+    }
+    .language-selection,img.thumbnail-img {
+            width: 50%;
+        }
+    @media only screen and (max-width:767px) {
         .language-selection {
             flex-wrap:wrap;
+            margin-top:25px;
+        }
+        #step1 .language-selection {
+          padding-left:0px;
         }
         .language-selection div {
             flex: auto;
             width: 100%;
         }
+        .language-selection,img.thumbnail-img {
+            width: 100%;
+        }
+        .step.active {
+            display:block!important;
+        }
     }
+    .thumbnail-img-div:before {
+          content: "";
+          background: var(--primary-color);
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: -10px;
+          left: -10px;
+          z-index:0;
+          border-radius:16px;
+      }
   </style>
 
   <div class="container">
@@ -412,16 +450,23 @@
 
     <!-- Step 1: Language Selection -->
     <div class="step active" id="step1">
+      <div class="thumbnail-img-div" style="position:relative;height:auto;">
+      <img src="https://cdn.shopify.com/s/files/1/0032/3043/3315/files/QR-Code-SW.png?v=1764824413" alt="Sherwin Williams Product Selector" class="thumbnail-img" style="margin-bottom:0px;object-fit:cover;border-radius:16px;position:relative;height:auto;width:100%;">
+    </div>
+      
       <div class="language-selection">
         <div>
-      <p>Welcome to the Thrive Workwear Product Selection Guide</p>
+          <small style="color:var(--primary-color);">English</small>
+      <p style="font-size:18px;margin-top:0px;">Welcome to the Thrive Workwear Product Selection Guide</p>
       <button class="button" onclick="selectLanguage('en')"><span>Continue in English</span></button>
       </div>
-      <div>
-      <p style="margin-top: 35px;">Bienvenido al Selector de Productos de Thrive Workwear</p>
+      <div style="margin-top:35px;">
+        <small style="color:var(--primary-color);">Spanish</small>
+      <p style="font-size:18px;margin-top:0px;">Bienvenido al Selector de Productos de Thrive Workwear</p>
       <button class="button" onclick="selectLanguage('es')"><span>Continuar en Español</span></button>
       </div>
       </div>
+      
     </div>
 
     <!-- Step 2: Product Line Selection -->
@@ -485,8 +530,8 @@
         <img id="preview-image" src="" alt="Product Image">
         <div id="image-fallback-text" style="display:none; font-weight:bold; color:red;"></div>
       </div>
-      <p class="item-number"><span id="item-number-label">S-W Sales NUMBER</span>: <span id="summary-item">TBD</span></p>
-      <p id="knee-pad-message" style="display:none; color:red;font-weight:bold; margin: 10px 0;"><span id="knee-pad-text">KNEE PAD INSERTS REQUIRED: 102516978</span></p>
+      <p class="item-number" style="margin-bottom:0;"><span id="item-number-label">S-W Sales NUMBER</span>: <span id="summary-item">TBD</span></p>
+      <p id="knee-pad-message" style="display:none; color:red;font-weight:bold; margin:0px 0px 10px;"><span id="knee-pad-text">Knee Pad Inserts Required: 102516978</span></p>
       <p style="margin:0;"><span id="message-label">Please show this information to your SHERWIN-WILLIAMS store associate for ordering.</span><br><strong><span id="thank-you-label">THANK YOU</span>!</strong></p>
       <img src="https://s7d2.scene7.com/is/image/sherwinwilliams/sw-logo-header-up?scl=1&fmt=png-alpha" alt="Sherwin Williams Logo" class="sw-logo" style="margin:0;">
       <div class="button-row">
@@ -1040,6 +1085,7 @@ function updateSummary() {
   const kneepadMessage = document.getElementById('knee-pad-message');
   if (selection.style === 'pro-kneepad') {
     kneepadMessage.style.display = 'block';
+    document.getElementById('knee-pad-text').innerText = translations[lang].titles.kneePadMessageLabel;
   } else {
     kneepadMessage.style.display = 'none';
   }
